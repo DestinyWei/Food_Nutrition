@@ -1,0 +1,4280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中华减脂厨房 · 八方风味营养实验室</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #f3ede2;
+  --paper-deep: #e8dfcf;
+  --ink: #1a1814;
+  --ink-soft: #4a443a;
+  --ink-mute: #8a8073;
+  --line: #2a2620;
+
+  --carb: #c2410c;
+  --carb-soft: #fde8d4;
+  --protein: #166534;
+  --protein-soft: #d4e7d8;
+  --fat: #854d0e;
+  --fat-soft: #f4e3c5;
+
+  --accent: #7c2d12;
+  --accent-2: #1e3a5f;
+  --good: #166534;
+  --warn: #b45309;
+  --bad: #991b1b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(124,45,18,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 85% 80%, rgba(22,101,52,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='2' /%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--ink);
+  font-family: 'Noto Serif SC', serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* === Masthead === */
+.masthead {
+  border-bottom: 2px solid var(--line);
+  padding: 24px 48px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+.masthead::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--line);
+}
+.brand { display: flex; align-items: baseline; gap: 16px; }
+.brand-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+.brand-issue {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.1em;
+}
+.masthead-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  text-align: right;
+  letter-spacing: 0.05em;
+}
+
+/* === Hero === */
+.hero {
+  padding: 64px 48px 48px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 64px;
+  align-items: end;
+  border-bottom: 1px solid var(--line);
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 8vw, 116px);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.hero-title .em { font-style: italic; font-weight: 400; color: var(--accent); }
+.hero-title .zh {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 0.5em;
+  display: block;
+  margin-top: 14px;
+  letter-spacing: 0.04em;
+}
+.hero-side { padding-bottom: 8px; border-left: 1px solid var(--line); padding-left: 32px; }
+.hero-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.hero-desc { font-size: 15px; line-height: 1.75; color: var(--ink-soft); font-weight: 300; }
+.hero-desc em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 17px;
+}
+
+/* === Section === */
+.section { padding: 64px 48px; border-bottom: 1px solid var(--line); }
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ink);
+  gap: 24px;
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.15em;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1;
+}
+.section-title .zh {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.65em;
+  font-weight: 600;
+  margin-left: 12px;
+  color: var(--ink-soft);
+}
+.section-aside {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-mute);
+  max-width: 320px;
+  text-align: right;
+}
+
+/* === Chapter 1: 控制台 === */
+.control-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; }
+.mode-toggle {
+  display: flex; gap: 0;
+  border: 1.5px solid var(--ink);
+  margin-bottom: 24px;
+}
+.mode-btn {
+  flex: 1; padding: 14px 16px;
+  background: transparent; border: none;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 14px; font-weight: 500;
+  color: var(--ink); cursor: pointer;
+  transition: all 0.3s; letter-spacing: 0.05em;
+}
+.mode-btn + .mode-btn { border-left: 1.5px solid var(--ink); }
+.mode-btn.active { background: var(--ink); color: var(--paper); }
+.mode-btn .en {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 11px; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  margin-top: 2px; opacity: 0.6;
+}
+
+.tdee-block {
+  border: 1.5px solid var(--ink);
+  background: var(--paper-deep);
+  padding: 24px; margin-bottom: 28px;
+}
+.tdee-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.tdee-input-wrap { display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px; }
+.tdee-input {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 56px; font-weight: 500; line-height: 1;
+  background: transparent; border: none;
+  border-bottom: 2px solid var(--ink);
+  width: 180px; color: var(--ink);
+  outline: none; padding-bottom: 4px;
+}
+.tdee-unit {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 18px; color: var(--ink-mute);
+}
+.deficit-row { display: flex; align-items: center; gap: 16px; }
+.deficit-row label { font-size: 13px; color: var(--ink-soft); white-space: nowrap; }
+.deficit-slider {
+  flex: 1; -webkit-appearance: none;
+  height: 2px; background: var(--ink); outline: none;
+}
+.deficit-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 18px; height: 18px;
+  background: var(--accent); border-radius: 50%;
+  cursor: pointer; border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1.5px var(--ink);
+}
+.deficit-slider::-moz-range-thumb {
+  width: 18px; height: 18px; background: var(--accent);
+  border-radius: 50%; cursor: pointer; border: 2px solid var(--paper);
+}
+.deficit-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600; font-size: 13px;
+  min-width: 70px; text-align: right;
+}
+
+.ratio-block { border: 1.5px solid var(--ink); padding: 24px; }
+.ratio-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px dashed var(--ink-mute);
+}
+.ratio-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; }
+.ratio-locked {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.15em;
+  color: var(--ink-mute); text-transform: uppercase;
+}
+.ratio-row {
+  display: grid; grid-template-columns: 90px 1fr 60px;
+  align-items: center; gap: 16px; margin-bottom: 16px;
+}
+.ratio-row:last-child { margin-bottom: 0; }
+.ratio-label {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600; font-size: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ratio-dot { width: 10px; height: 10px; border-radius: 2px; }
+.ratio-dot.carb { background: var(--carb); }
+.ratio-dot.protein { background: var(--protein); }
+.ratio-dot.fat { background: var(--fat); }
+.ratio-slider {
+  -webkit-appearance: none; width: 100%;
+  height: 4px; background: var(--paper-deep);
+  outline: none; cursor: pointer;
+}
+.ratio-slider.carb { background: linear-gradient(to right, var(--carb) 0%, var(--carb) var(--p,50%), var(--paper-deep) var(--p,50%)); }
+.ratio-slider.protein { background: linear-gradient(to right, var(--protein) 0%, var(--protein) var(--p,30%), var(--paper-deep) var(--p,30%)); }
+.ratio-slider.fat { background: linear-gradient(to right, var(--fat) 0%, var(--fat) var(--p,20%), var(--paper-deep) var(--p,20%)); }
+.ratio-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px;
+  background: var(--paper); border: 2px solid var(--ink);
+  border-radius: 50%; cursor: pointer;
+}
+.ratio-slider::-moz-range-thumb {
+  width: 16px; height: 16px; background: var(--paper);
+  border: 2px solid var(--ink); border-radius: 50%; cursor: pointer;
+}
+.ratio-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600; font-size: 14px; text-align: right;
+}
+.ratio-warn {
+  margin-top: 14px; padding: 8px 12px;
+  background: var(--carb-soft); border-left: 3px solid var(--carb);
+  font-size: 12px; color: var(--carb);
+  font-family: 'JetBrains Mono', monospace; display: none;
+}
+.ratio-warn.show { display: block; }
+
+.targets-display {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+  border: 1.5px solid var(--ink);
+  background: var(--paper-deep); margin-top: 32px;
+}
+.target-cell {
+  padding: 28px 24px; border-right: 1px solid var(--ink);
+}
+.target-cell:last-child { border-right: none; }
+.target-cell.cal { background: var(--ink); color: var(--paper); }
+.target-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; margin-bottom: 8px; opacity: 0.7;
+}
+.target-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px; font-weight: 500; line-height: 1; margin-bottom: 4px;
+}
+.target-value.carb { color: var(--carb); }
+.target-value.protein { color: var(--protein); }
+.target-value.fat { color: var(--fat); }
+.target-unit {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 14px; opacity: 0.7;
+}
+.target-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; margin-top: 8px; opacity: 0.6;
+}
+
+/* === Chapter 2: 地区菜系 === */
+.cuisine-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 32px;
+  align-items: start;
+}
+.cuisine-current {
+  border: 1.5px solid var(--ink);
+  padding: 28px;
+  background: var(--paper-deep);
+}
+.cuisine-current-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ink-mute);
+  margin-bottom: 8px;
+}
+.cuisine-current-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--accent);
+}
+.cuisine-current-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.cuisine-current-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.cuisine-current-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--ink-mute);
+}
+.cuisine-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 3px 10px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  letter-spacing: 0.05em;
+}
+.cuisine-tip {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  padding-left: 32px;
+  border-left: 1px solid var(--ink);
+}
+.cuisine-tip strong {
+  font-family: 'Noto Serif SC', serif;
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.cuisine-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+.cuisine-card {
+  background: var(--paper);
+  padding: 20px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s;
+}
+.cuisine-card:hover { background: var(--paper-deep); }
+.cuisine-card.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.cuisine-card.active .cuisine-card-num,
+.cuisine-card.active .cuisine-card-en,
+.cuisine-card.active .cuisine-card-key { color: var(--paper); opacity: 0.7; }
+
+.cuisine-card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+.cuisine-card-name {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 2px;
+}
+.cuisine-card-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-mute);
+  margin-bottom: 12px;
+}
+.cuisine-card-key {
+  font-size: 11px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* 子地区 */
+.sub-region-row {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sub-region-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-right: 4px;
+}
+.sub-region-pill {
+  padding: 6px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sub-region-pill:hover { background: var(--paper-deep); }
+.sub-region-pill.active { background: var(--ink); color: var(--paper); }
+.sub-region-pill .en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  margin-left: 6px;
+  opacity: 0.6;
+}
+
+/* === Chapter 3: 食材库 === */
+.ingredient-controls {
+  display: flex; gap: 12px; margin-bottom: 24px;
+  flex-wrap: wrap; align-items: center;
+}
+.search-box { flex: 1; min-width: 200px; position: relative; }
+.search-box input {
+  width: 100%; padding: 12px 16px 12px 40px;
+  border: 1.5px solid var(--ink); background: var(--paper);
+  font-family: 'Noto Serif SC', serif; font-size: 14px;
+  outline: none; color: var(--ink);
+}
+.search-box::before {
+  content: '⌕'; position: absolute;
+  left: 14px; top: 50%; transform: translateY(-50%);
+  font-size: 18px; color: var(--ink-mute);
+}
+.filter-pill {
+  padding: 10px 16px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px; cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.filter-pill:hover { background: var(--paper-deep); }
+.filter-pill.active { background: var(--ink); color: var(--paper); }
+.filter-pill .count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; margin-left: 6px; opacity: 0.6;
+}
+
+.ingredient-hint {
+  margin-bottom: 20px;
+  padding: 10px 16px;
+  background: var(--paper-deep);
+  border-left: 3px solid var(--accent);
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink-soft);
+  letter-spacing: 0.05em;
+}
+
+.ingredient-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+.ing-card {
+  background: var(--paper); padding: 20px;
+  position: relative; transition: background 0.2s;
+}
+.ing-card:hover { background: var(--paper-deep); }
+.ing-card.featured {
+  background: linear-gradient(180deg, var(--paper-deep) 0%, var(--paper) 100%);
+}
+.ing-card.featured::before {
+  content: '★ 当地常用';
+  position: absolute;
+  top: -1px; left: -1px;
+  background: var(--accent);
+  color: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 600;
+  padding: 4px 10px;
+  letter-spacing: 0.1em;
+}
+.ing-tag {
+  position: absolute; top: 0; right: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.ing-tag.carb { background: var(--carb); }
+.ing-tag.protein { background: var(--protein); }
+.ing-tag.fat { background: var(--fat); }
+.ing-tag.veg { background: var(--ink-soft); }
+
+.ing-card.featured .ing-name { padding-top: 18px; }
+.ing-name {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 19px; font-weight: 700;
+  margin-bottom: 2px; margin-right: 60px;
+}
+.ing-name-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 13px;
+  color: var(--ink-mute); margin-bottom: 14px;
+}
+.ing-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--ink-mute);
+}
+.ing-stat {
+  display: flex; justify-content: space-between;
+  align-items: baseline;
+}
+.ing-stat-label {
+  color: var(--ink-mute);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.ing-stat-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600; font-size: 13px;
+}
+.ing-stat-val.cal { color: var(--accent); }
+.ing-stat-val.c { color: var(--carb); }
+.ing-stat-val.p { color: var(--protein); }
+.ing-stat-val.f { color: var(--fat); }
+
+.ing-portion {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 12px;
+  color: var(--ink-mute);
+  margin-top: 8px;
+}
+
+.ing-guide-tag {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 3px 8px;
+  background: var(--paper-deep);
+  border: 1px solid var(--ink-soft);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+
+/* === Chapter 4: 菜单生成 === */
+.menu-controls {
+  display: flex; gap: 16px; align-items: center;
+  margin-bottom: 32px; flex-wrap: wrap;
+}
+.gen-btn {
+  padding: 14px 32px;
+  background: var(--ink); color: var(--paper);
+  border: 1.5px solid var(--ink);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15px; font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.gen-btn:hover { background: var(--accent); border-color: var(--accent); }
+.gen-btn .arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 18px;
+  transition: transform 0.2s;
+}
+.gen-btn:hover .arrow { transform: translateX(4px); }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.meal-card {
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  display: flex; flex-direction: column;
+}
+.meal-header {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+  background: var(--paper-deep);
+}
+.meal-tag {
+  position: absolute; top: -1px; left: 24px;
+  background: var(--ink); color: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  padding: 6px 14px; text-transform: uppercase;
+}
+.meal-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 500; font-style: italic;
+  margin-top: 16px; line-height: 1;
+}
+.meal-name-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600; font-size: 16px; margin-top: 6px;
+}
+.meal-body { padding: 16px 24px; flex: 1; }
+
+.dish-block {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed rgba(26,24,20,0.2);
+}
+.dish-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+.dish-name {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.dish-name-text { flex: 1; }
+.dish-method-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  background: var(--paper-deep);
+  padding: 2px 8px;
+  border: 1px solid var(--ink-soft);
+  color: var(--ink-soft);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.dish-items {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.dish-item-line {
+  display: flex; justify-content: space-between;
+  align-items: baseline;
+  padding: 3px 0;
+  gap: 8px;
+}
+.dish-item-name {
+  display: flex; align-items: center; gap: 6px;
+}
+.dish-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.dish-dot.carb { background: var(--carb); }
+.dish-dot.protein { background: var(--protein); }
+.dish-dot.fat { background: var(--fat); }
+.dish-dot.veg { background: var(--ink-soft); }
+.dish-qty {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  white-space: nowrap;
+}
+
+.meal-footer {
+  padding: 14px 24px;
+  background: var(--ink); color: var(--paper);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+}
+.meal-foot-cell { text-align: center; }
+.meal-foot-label {
+  display: block; font-size: 9px; opacity: 0.6;
+  letter-spacing: 0.15em; margin-bottom: 2px;
+}
+.meal-foot-val { font-size: 14px; font-weight: 600; }
+
+/* 总计 */
+.total-bar {
+  margin-top: 32px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+}
+.total-title { padding: 24px; background: var(--ink); color: var(--paper); }
+.total-title-en { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; }
+.total-title-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700; font-size: 14px; margin-top: 4px;
+}
+.total-cell {
+  padding: 20px 24px;
+  border-right: 1px solid var(--ink);
+}
+.total-cell:last-child { border-right: none; }
+.total-cell-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ink-mute);
+  margin-bottom: 6px;
+}
+.total-cell-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 500; line-height: 1;
+}
+.total-cell-val.carb { color: var(--carb); }
+.total-cell-val.protein { color: var(--protein); }
+.total-cell-val.fat { color: var(--fat); }
+.total-cell-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; margin-top: 4px;
+  color: var(--ink-mute);
+}
+.total-cell-pct.over { color: var(--bad); font-weight: 600; }
+.total-cell-pct.warn { color: var(--warn); font-weight: 600; }
+.total-cell-pct.good { color: var(--good); font-weight: 600; }
+
+/* === Chapter 5: 膳食指南 === */
+.guide-toggle {
+  display: flex; gap: 0;
+  border: 1.5px solid var(--ink);
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+.guide-btn {
+  flex: 1; padding: 16px 20px;
+  background: transparent; border: none;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 14px; font-weight: 600;
+  color: var(--ink); cursor: pointer;
+  transition: all 0.3s;
+}
+.guide-btn + .guide-btn { border-left: 1.5px solid var(--ink); }
+.guide-btn.active { background: var(--ink); color: var(--paper); }
+.guide-btn .en {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 11px;
+  font-weight: 400; opacity: 0.6;
+  margin-top: 2px; letter-spacing: 0.1em;
+}
+
+.guide-source {
+  margin-bottom: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.05em;
+}
+.guide-source a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+.guide-row {
+  background: var(--paper);
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+}
+.guide-row-info {}
+.guide-group-name {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.guide-group-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-mute);
+  margin-bottom: 8px;
+}
+.guide-group-rec {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.guide-status {
+  text-align: right;
+  min-width: 120px;
+}
+.guide-status-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+}
+.guide-status-target {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  margin-top: 4px;
+}
+.guide-status-bar {
+  margin-top: 8px;
+  height: 4px;
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+.guide-status-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  background: var(--good);
+  transition: width 0.5s;
+}
+.guide-status-fill.warn { background: var(--warn); }
+.guide-status-fill.over { background: var(--bad); }
+.guide-status-fill.under { background: var(--ink-mute); }
+
+.guide-badge {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 2px 8px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+.guide-badge.good { background: var(--good); color: var(--paper); }
+.guide-badge.warn { background: var(--warn); color: var(--paper); }
+.guide-badge.over { background: var(--bad); color: var(--paper); }
+.guide-badge.under { background: var(--ink-mute); color: var(--paper); }
+
+.guide-summary {
+  margin-top: 32px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper-deep);
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.guide-summary-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.guide-summary-text strong {
+  font-family: 'Noto Serif SC', serif;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ink);
+}
+.guide-score {
+  text-align: center;
+  border-left: 1px solid var(--ink);
+  padding-left: 32px;
+  min-width: 140px;
+}
+.guide-score-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--accent);
+}
+.guide-score-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-top: 4px;
+}
+
+/* === Footer === */
+.footer {
+  padding: 40px 48px;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 14px;
+  background: var(--paper-deep);
+}
+.footer .ornament {
+  font-size: 20px; display: block;
+  margin-bottom: 12px;
+  letter-spacing: 0.5em;
+  color: var(--ink-soft);
+}
+
+/* === 响应式 === */
+@media (max-width: 1100px) {
+  .cuisine-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; gap: 32px; padding: 48px 32px; }
+  .hero-side { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 24px; }
+  .control-grid { grid-template-columns: 1fr; gap: 32px; }
+  .targets-display { grid-template-columns: 1fr 1fr; }
+  .target-cell { border-right: none; border-bottom: 1px solid var(--ink); }
+  .target-cell:nth-child(odd) { border-right: 1px solid var(--ink); }
+  .cuisine-grid { grid-template-columns: repeat(2, 1fr); }
+  .cuisine-intro { grid-template-columns: 1fr; }
+  .cuisine-tip { padding-left: 0; border-left: none; padding-top: 16px; border-top: 1px solid var(--ink); }
+  .menu-grid { grid-template-columns: 1fr; }
+  .total-bar { grid-template-columns: 1fr 1fr; }
+  .total-title { grid-column: 1 / -1; }
+  .guide-grid { grid-template-columns: 1fr; }
+  .guide-summary { grid-template-columns: 1fr; }
+  .guide-score { border-left: none; border-top: 1px solid var(--ink); padding-left: 0; padding-top: 20px; }
+  .section { padding: 48px 32px; }
+  .masthead { padding: 16px 32px; }
+}
+
+@media (max-width: 560px) {
+  .hero { padding: 40px 24px; }
+  .section { padding: 40px 24px; }
+  .masthead { padding: 16px 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .masthead-meta { text-align: left; }
+  .targets-display { grid-template-columns: 1fr; }
+  .target-cell { border-right: none !important; border-bottom: 1px solid var(--ink); }
+  .target-cell:last-child { border-bottom: none; }
+  .ingredient-grid { grid-template-columns: 1fr; }
+  .total-bar { grid-template-columns: 1fr; }
+  .total-cell { border-right: none; border-bottom: 1px solid var(--ink); }
+  .cuisine-grid { grid-template-columns: 1fr; }
+  .mode-toggle, .guide-toggle { flex-wrap: wrap; }
+  .mode-btn, .guide-btn { flex-basis: 50%; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section, .hero { animation: rise 0.7s ease-out backwards; }
+.hero { animation-delay: 0.05s; }
+.section:nth-of-type(1) { animation-delay: 0.15s; }
+.section:nth-of-type(2) { animation-delay: 0.25s; }
+
+/* === 菜名可点击样式 === */
+.dish-name-text {
+  cursor: pointer;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 0.2s;
+}
+.dish-name-text:hover { border-bottom-color: var(--accent); }
+.dish-name-text::after {
+  content: ' ⊕';
+  font-size: 11px;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+
+/* === 菜单工具栏 === */
+.menu-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  background: var(--paper-deep);
+  border: 1px solid var(--ink);
+}
+.menu-toolbar-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-right: 4px;
+}
+.date-input {
+  padding: 8px 12px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+}
+.refresh-btn {
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 12px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+.refresh-btn:hover { background: var(--ink); color: var(--paper); }
+
+.mode-tab {
+  display: flex;
+  border: 1.5px solid var(--ink);
+  margin-bottom: 24px;
+}
+.mode-tab-btn {
+  flex: 1;
+  padding: 14px 20px;
+  background: transparent;
+  border: none;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.mode-tab-btn + .mode-tab-btn { border-left: 1.5px solid var(--ink); }
+.mode-tab-btn.active { background: var(--ink); color: var(--paper); }
+.mode-tab-btn .en {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.6;
+  margin-top: 2px;
+  letter-spacing: 0.1em;
+}
+
+/* === Modal 烹饪卡片 === */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(26, 24, 20, 0.65);
+  backdrop-filter: blur(4px);
+  display: none;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.25s ease-out;
+}
+.modal-backdrop.show { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal {
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: scaleIn 0.3s ease-out;
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-close:hover { background: var(--ink); color: var(--paper); }
+
+.modal-header {
+  padding: 36px 40px 24px;
+  background: var(--paper-deep);
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+}
+.modal-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.modal-name {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.modal-name-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink-mute);
+}
+.modal-meta {
+  display: flex;
+  gap: 28px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--ink-mute);
+  flex-wrap: wrap;
+}
+.modal-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.modal-meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+.modal-meta-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.modal-body { padding: 32px 40px; }
+.modal-section {
+  margin-bottom: 28px;
+}
+.modal-section:last-child { margin-bottom: 0; }
+.modal-section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.modal-section-title .zh {
+  font-family: 'Noto Serif SC', serif;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.ingredient-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 24px;
+}
+.ingredient-list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(26,24,20,0.15);
+  font-size: 14px;
+  align-items: baseline;
+}
+.ingredient-list-item .il-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ingredient-list-item .il-name::before {
+  content: '•';
+  color: var(--accent);
+  font-weight: 700;
+}
+.ingredient-list-item .il-qty {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.steps-list {
+  list-style: none;
+  counter-reset: step;
+}
+.step-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(26,24,20,0.08);
+  align-items: start;
+}
+.step-item:last-child { border-bottom: none; }
+.step-num {
+  counter-increment: step;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+.step-num::before { content: counter(step) "."; }
+.step-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.tips-box {
+  background: var(--paper-deep);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.tips-box strong {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* === 自定义菜单构建器 === */
+.builder-section {
+  display: none;
+}
+.builder-section.active { display: block; }
+
+.builder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+.builder-panel {
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+}
+.builder-panel-header {
+  padding: 18px 20px;
+  background: var(--ink);
+  color: var(--paper);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.builder-panel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 500;
+}
+.builder-panel-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  font-size: 13px;
+  opacity: 0.7;
+}
+.builder-panel-body {
+  padding: 16px 20px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+/* 食材池 */
+.ing-pool-search {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 13px;
+  margin-bottom: 12px;
+  outline: none;
+}
+.ing-pool-cats {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.ing-pool-cat {
+  padding: 5px 10px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.ing-pool-cat.active { background: var(--ink); color: var(--paper); }
+.ing-pool-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.ing-pool-item {
+  padding: 8px 10px;
+  border: 1px solid var(--ink-mute);
+  background: var(--paper);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+.ing-pool-item:hover { border-color: var(--ink); background: var(--paper-deep); }
+.ing-pool-item.added {
+  background: var(--protein-soft);
+  border-color: var(--protein);
+  color: var(--protein);
+}
+.ing-pool-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ing-pool-dot.carb { background: var(--carb); }
+.ing-pool-dot.protein { background: var(--protein); }
+.ing-pool-dot.fat { background: var(--fat); }
+.ing-pool-dot.veg { background: var(--ink-soft); }
+.ing-pool-name {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ing-pool-add {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 14px;
+}
+
+/* 已选食材 */
+.selected-empty {
+  text-align: center;
+  padding: 32px 20px;
+  color: var(--ink-mute);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 15px;
+}
+.selected-meal-block {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px dashed var(--ink-mute);
+}
+.selected-meal-block:last-child { border-bottom: none; margin-bottom: 0; }
+.selected-meal-title {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+.selected-meal-title .meal-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+.selected-meal-empty {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-mute);
+  padding: 8px 12px;
+  background: var(--paper-deep);
+}
+
+.selected-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  margin-bottom: 4px;
+  background: var(--paper-deep);
+  border-left: 3px solid;
+  font-size: 12px;
+}
+.selected-item.carb { border-color: var(--carb); }
+.selected-item.protein { border-color: var(--protein); }
+.selected-item.fat { border-color: var(--fat); }
+.selected-item.veg { border-color: var(--ink-soft); }
+.selected-item-name { font-weight: 500; }
+.selected-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.selected-item-qty input {
+  width: 50px;
+  padding: 3px 6px;
+  border: 1px solid var(--ink-mute);
+  background: var(--paper);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-align: right;
+  outline: none;
+}
+.selected-item-qty .unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+}
+.selected-item-remove {
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--ink-mute);
+  background: var(--paper);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+}
+.selected-item-remove:hover { background: var(--bad); color: var(--paper); border-color: var(--bad); }
+
+.meal-pick {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.meal-pick-btn {
+  flex: 1;
+  padding: 5px 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  border: 1px solid var(--ink-mute);
+  background: var(--paper);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+.meal-pick-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* 推荐菜品 */
+.suggestion-row {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper-deep);
+}
+.suggestion-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+.suggestion-title .zh {
+  font-family: 'Noto Serif SC', serif;
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-left: 8px;
+}
+.suggestion-empty {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ink-mute);
+  font-size: 14px;
+}
+.suggestion-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.suggestion-card {
+  padding: 12px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.suggestion-card:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.suggestion-card-name {
+  font-weight: 700;
+  font-family: 'Noto Serif SC', serif;
+  margin-bottom: 4px;
+}
+.suggestion-card-method {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--ink-mute);
+}
+.suggestion-card:hover .suggestion-card-method { color: var(--paper); opacity: 0.7; }
+
+/* 预设菜品库(模式 B) */
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+.preset-card {
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.preset-card:hover { background: var(--paper-deep); }
+.preset-card.added {
+  background: var(--protein-soft);
+  border: 2px solid var(--protein);
+}
+.preset-card-name {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.preset-card-method {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--ink-mute);
+  margin-bottom: 8px;
+}
+.preset-card-stats {
+  display: flex;
+  gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--ink-mute);
+}
+.preset-card-stats span { display: flex; gap: 3px; }
+.preset-card-stats .lbl { color: var(--ink-mute); }
+
+.preset-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+/* 自定义菜单实时预览 */
+.custom-preview {
+  margin-top: 24px;
+}
+.custom-preview-bar {
+  margin-top: 16px;
+}
+
+@media (max-width: 980px) {
+  .builder-grid { grid-template-columns: 1fr; }
+  .ingredient-list { grid-template-columns: 1fr; }
+  .modal-header { padding: 28px 24px 20px; }
+  .modal-body { padding: 24px; }
+  .modal-name { font-size: 26px; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="brand">
+    <span class="brand-mark">China Cut Kitchen</span>
+    <span class="brand-issue">VOL.02 / 八方风味</span>
+  </div>
+  <div class="masthead-meta">
+    营养实验室 · NUTRITIONAL LAB<br>
+    <span id="todayDate"></span>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 class="hero-title">
+    Eight <span class="em">Regions</span>,<br>
+    One <span class="em">Plate</span>.
+    <span class="zh">中华减脂厨房</span>
+  </h1>
+  <div class="hero-side">
+    <div class="hero-kicker">— A Macro & Regional Cookbook</div>
+    <p class="hero-desc">
+      把中国八大菜系的<em>风味基因</em>装进减脂饭盒。
+      自动菜单<em>每日不同</em>、点击菜名查看<em>详细做法</em>、
+      支持按食材或按菜品<em>自由搭配</em> ——
+      算法实时对照中/美膳食指南,告诉你今天吃得是否均衡。
+    </p>
+  </div>
+</section>
+
+<!-- Chapter 01 控制台 -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-num">CHAPTER 01 / 控制台</div>
+      <h2 class="section-title">Daily Targets <span class="zh">每日营养目标</span></h2>
+    </div>
+    <p class="section-aside">"先定目标,再定风味。"</p>
+  </div>
+
+  <div class="control-grid">
+    <div>
+      <div class="mode-toggle">
+        <button class="mode-btn active" data-mode="train">训练日<span class="en">Training · 50/30/20</span></button>
+        <button class="mode-btn" data-mode="rest">非训练日<span class="en">Rest · 35/35/30</span></button>
+        <button class="mode-btn" data-mode="custom">自定义<span class="en">Custom Macros</span></button>
+      </div>
+      <div class="tdee-block">
+        <div class="tdee-label">每日总代谢 / TDEE</div>
+        <div class="tdee-input-wrap">
+          <input type="number" id="tdeeInput" class="tdee-input" value="2635" min="1000" max="5000">
+          <span class="tdee-unit">kcal</span>
+        </div>
+        <div class="deficit-row">
+          <label>热量缺口</label>
+          <input type="range" id="deficitSlider" class="deficit-slider" min="0" max="30" step="1" value="15">
+          <span class="deficit-value" id="deficitValue">−15%</span>
+        </div>
+      </div>
+    </div>
+    <div class="ratio-block">
+      <div class="ratio-header">
+        <span class="ratio-title">Macro Ratio</span>
+        <span class="ratio-locked" id="ratioLockStatus">PRESET · LOCKED</span>
+      </div>
+      <div class="ratio-row">
+        <div class="ratio-label"><span class="ratio-dot carb"></span>碳水</div>
+        <input type="range" id="carbRatio" class="ratio-slider carb" min="20" max="65" value="50" disabled>
+        <div class="ratio-value" id="carbVal">50%</div>
+      </div>
+      <div class="ratio-row">
+        <div class="ratio-label"><span class="ratio-dot protein"></span>蛋白质</div>
+        <input type="range" id="proteinRatio" class="ratio-slider protein" min="15" max="50" value="30" disabled>
+        <div class="ratio-value" id="proteinVal">30%</div>
+      </div>
+      <div class="ratio-row">
+        <div class="ratio-label"><span class="ratio-dot fat"></span>脂肪</div>
+        <input type="range" id="fatRatio" class="ratio-slider fat" min="15" max="40" value="20" disabled>
+        <div class="ratio-value" id="fatVal">20%</div>
+      </div>
+      <div class="ratio-warn" id="ratioWarn">三者之和需为 100%</div>
+    </div>
+  </div>
+
+  <div class="targets-display">
+    <div class="target-cell cal">
+      <div class="target-kicker">Net Intake / 摄入</div>
+      <div class="target-value" id="totalCal">2240</div>
+      <span class="target-unit">kcal / day</span>
+      <div class="target-sub">After deficit · 缺口后</div>
+    </div>
+    <div class="target-cell">
+      <div class="target-kicker">⬤ Carbohydrate · 碳水</div>
+      <div class="target-value carb" id="carbG">280</div>
+      <span class="target-unit">grams</span>
+      <div class="target-sub" id="carbKcal">1120 kcal</div>
+    </div>
+    <div class="target-cell">
+      <div class="target-kicker">⬤ Protein · 蛋白质</div>
+      <div class="target-value protein" id="proteinG">168</div>
+      <span class="target-unit">grams</span>
+      <div class="target-sub" id="proteinKcal">672 kcal</div>
+    </div>
+    <div class="target-cell">
+      <div class="target-kicker">⬤ Fat · 脂肪</div>
+      <div class="target-value fat" id="fatG">50</div>
+      <span class="target-unit">grams</span>
+      <div class="target-sub" id="fatKcal">448 kcal</div>
+    </div>
+  </div>
+</section>
+
+<!-- Chapter 02 地区菜系 -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-num">CHAPTER 02 / 风味</div>
+      <h2 class="section-title">Regional Cuisines <span class="zh">地区菜系</span></h2>
+    </div>
+    <p class="section-aside">"一方水土养一方人 —— 减脂亦然。"</p>
+  </div>
+
+  <div class="cuisine-intro">
+    <div class="cuisine-current">
+      <div class="cuisine-current-label">Currently Cooking · 当前菜系</div>
+      <div class="cuisine-current-name" id="cuisineNameEn">Cantonese</div>
+      <div class="cuisine-current-zh" id="cuisineNameZh">粤菜</div>
+      <div class="cuisine-current-desc" id="cuisineDesc">清淡鲜活,讲究原味。以蒸、白灼、滚汤为主,少油少调,海鲜河鲜与时令蔬菜的天堂。</div>
+      <div class="cuisine-current-tags" id="cuisineTags"></div>
+    </div>
+    <div class="cuisine-tip">
+      "不同地区的<strong>食材偏好</strong>与<strong>烹饪手法</strong>会一并切换 —— 食材库会把当地常用食材置顶,
+      但全部 80+ 种食材始终可见可搜。子地区进一步细化口味,比如粤菜下的潮汕白灼海鲜与广府煲汤。"
+    </div>
+  </div>
+
+  <div class="cuisine-grid" id="cuisineGrid"></div>
+
+  <div class="sub-region-row" id="subRegionRow">
+    <span class="sub-region-label">子地区 / Sub-Region</span>
+    <!-- 动态填充 -->
+  </div>
+</section>
+
+<!-- Chapter 03 食材库 -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-num">CHAPTER 03 / 食材谱</div>
+      <h2 class="section-title">The Pantry <span class="zh">食材营养库</span></h2>
+    </div>
+    <p class="section-aside">每 100g 生重 · 80+ 种食材 · 含中国指南推荐量标识</p>
+  </div>
+
+  <div class="ingredient-controls">
+    <div class="search-box">
+      <input type="text" id="ingSearch" placeholder="搜索食材 / Search ingredient...">
+    </div>
+    <button class="filter-pill active" data-filter="all">全部 <span class="count" id="cntAll"></span></button>
+    <button class="filter-pill" data-filter="carb">碳水 <span class="count" id="cntCarb"></span></button>
+    <button class="filter-pill" data-filter="protein">蛋白质 <span class="count" id="cntProtein"></span></button>
+    <button class="filter-pill" data-filter="fat">脂肪 <span class="count" id="cntFat"></span></button>
+    <button class="filter-pill" data-filter="veg">蔬菜 <span class="count" id="cntVeg"></span></button>
+  </div>
+
+  <div class="ingredient-hint" id="featuredHint">★ 当前菜系常用食材已置顶,但全部食材均可见可选</div>
+
+  <div class="ingredient-grid" id="ingGrid"></div>
+</section>
+
+<!-- Chapter 04 菜单生成 -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-num">CHAPTER 04 / 编排</div>
+      <h2 class="section-title">Today's Menu <span class="zh">今日菜单</span></h2>
+    </div>
+    <p class="section-aside">每日不同 · 点击菜名查看做法 · 支持自定义</p>
+  </div>
+
+  <div class="mode-tab">
+    <button class="mode-tab-btn active" data-tab="auto">
+      自动生成
+      <span class="en">Auto Generate · 每日不同</span>
+    </button>
+    <button class="mode-tab-btn" data-tab="custom-ing">
+      按食材自定义
+      <span class="en">By Ingredient · 选食材推荐菜</span>
+    </button>
+    <button class="mode-tab-btn" data-tab="custom-dish">
+      按菜品自定义
+      <span class="en">By Dish · 从菜品库挑选</span>
+    </button>
+  </div>
+
+  <!-- 模式 A: 自动生成 -->
+  <div class="builder-section active" data-section="auto">
+    <div class="menu-toolbar">
+      <span class="menu-toolbar-label">日期</span>
+      <input type="date" class="date-input" id="dateInput">
+      <button class="refresh-btn" id="todayBtn">今天</button>
+      <button class="refresh-btn" id="refreshBtn">↻ 换一份</button>
+      <span style="margin-left:auto;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--ink-mute);">
+        同一天保持稳定 · 改日期或点"换一份"切换
+      </span>
+    </div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+    <div class="total-bar" id="totalBar"></div>
+  </div>
+
+  <!-- 模式 B: 按食材自定义 -->
+  <div class="builder-section" data-section="custom-ing">
+    <div class="builder-grid">
+      <!-- 食材池 -->
+      <div class="builder-panel">
+        <div class="builder-panel-header">
+          <span class="builder-panel-title">Ingredients Pool</span>
+          <span class="builder-panel-zh">食材池 · 当地常用置顶</span>
+        </div>
+        <div class="builder-panel-body">
+          <input type="text" class="ing-pool-search" id="poolSearch" placeholder="搜索食材...">
+          <div class="ing-pool-cats">
+            <button class="ing-pool-cat active" data-pcat="all">全部</button>
+            <button class="ing-pool-cat" data-pcat="carb">碳水</button>
+            <button class="ing-pool-cat" data-pcat="protein">蛋白</button>
+            <button class="ing-pool-cat" data-pcat="fat">脂肪</button>
+            <button class="ing-pool-cat" data-pcat="veg">蔬菜</button>
+          </div>
+          <div class="ing-pool-list" id="poolList"></div>
+        </div>
+      </div>
+
+      <!-- 已选食材 + 推荐 -->
+      <div class="builder-panel">
+        <div class="builder-panel-header">
+          <span class="builder-panel-title">Your Selection</span>
+          <span class="builder-panel-zh">已选食材</span>
+        </div>
+        <div class="builder-panel-body">
+          <div class="meal-pick">
+            <button class="meal-pick-btn active" data-meal="breakfast">早餐 BREAKFAST</button>
+            <button class="meal-pick-btn" data-meal="lunch">午餐 LUNCH</button>
+            <button class="meal-pick-btn" data-meal="dinner">晚餐 DINNER</button>
+          </div>
+          <div id="selectedItems"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 推荐菜品 -->
+    <div class="suggestion-row">
+      <div class="suggestion-title">
+        Suggested Dishes <span class="zh">基于你选的食材推荐菜品</span>
+      </div>
+      <div id="suggestionList"></div>
+    </div>
+
+    <div class="custom-preview" id="customPreviewIng"></div>
+  </div>
+
+  <!-- 模式 C: 按菜品自定义 -->
+  <div class="builder-section" data-section="custom-dish">
+    <div class="meal-pick" style="margin-bottom:20px;max-width:480px;">
+      <button class="meal-pick-btn active" data-meal2="breakfast">添加到 早餐</button>
+      <button class="meal-pick-btn" data-meal2="lunch">添加到 午餐</button>
+      <button class="meal-pick-btn" data-meal2="dinner">添加到 晚餐</button>
+    </div>
+
+    <div class="preset-filters">
+      <button class="filter-pill active" data-pf="all">全部菜品 <span class="count" id="cntDishAll"></span></button>
+      <button class="filter-pill" data-pf="staple">主食</button>
+      <button class="filter-pill" data-pf="protein">蛋白菜</button>
+      <button class="filter-pill" data-pf="veg">蔬菜菜</button>
+      <button class="filter-pill" data-pf="soup">汤品</button>
+      <button class="filter-pill" data-pf="local">★ 当前菜系</button>
+    </div>
+
+    <div class="preset-grid" id="presetGrid"></div>
+
+    <div class="custom-preview" id="customPreviewDish"></div>
+  </div>
+
+</section>
+
+<!-- Chapter 05 膳食指南 -->
+<section class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-num">CHAPTER 05 / 指南对标</div>
+      <h2 class="section-title">Dietary Guidelines <span class="zh">膳食指南达标</span></h2>
+    </div>
+    <p class="section-aside">基于当前菜单实时核对食物组摄入</p>
+  </div>
+
+  <div class="guide-toggle">
+    <button class="guide-btn active" data-guide="cn">中国居民膳食指南 (2022)<span class="en">CHINA · CNS / 2022</span></button>
+    <button class="guide-btn" data-guide="us">Dietary Guidelines for Americans<span class="en">USA · USDA / 2020-2025</span></button>
+  </div>
+
+  <div class="guide-source" id="guideSource"></div>
+
+  <div class="guide-grid" id="guideGrid"></div>
+
+  <div class="guide-summary" id="guideSummary"></div>
+</section>
+
+<!-- 烹饪卡片 Modal -->
+<div class="modal-backdrop" id="cookModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">×</button>
+    <div class="modal-header">
+      <div class="modal-tag" id="modalTag"></div>
+      <div class="modal-name" id="modalName"></div>
+      <div class="modal-name-en" id="modalNameEn"></div>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <span class="ornament">⁂ ⁂ ⁂</span>
+  Built with respect for macros, regional palates & dietary science
+  <br>
+  <span style="font-size:11px; opacity:0.7; font-family:'JetBrains Mono',monospace; font-style:normal; letter-spacing:0.1em;">
+    数据为生重营养参考 · 实际值因品牌/产地略有差异
+  </span>
+</footer>
+
+<script>
+// ====================================================================
+// 食材库:80+ 种,带地区标签和指南分组
+// ====================================================================
+// regions: 当地常用区域(用于置顶)
+// guideGroup (CN): grain-refined / grain-whole / tuber / veg-dark / veg-light / fruit / meat / fish / egg / dairy / soy / nut / oil
+// guideGroup (US): grains-whole / grains-refined / vegetables / fruits / dairy / protein-meat / protein-seafood / protein-egg / protein-soy / protein-nut / oils
+
+const ingredients = [
+  // ===== 主食 (carb) =====
+  { name: "糙米饭", en: "Brown Rice (cooked)", cat: "carb", kcal: 116, c: 25, p: 2.6, f: 0.9, portion: "一碗 130g",
+    cnGroup: "grain-whole", usGroup: "grains-whole", regions: ["yue","jiangsu","sichuan","anhui","fujian","zhejiang","hunan","shandong","beijing","dongbei"] },
+  { name: "燕麦", en: "Rolled Oats (dry)", cat: "carb", kcal: 367, c: 66, p: 13, f: 6.5, portion: "干重 50g/份",
+    cnGroup: "grain-whole", usGroup: "grains-whole", regions: ["beijing","dongbei","jiangsu"] },
+  { name: "小米", en: "Millet (cooked)", cat: "carb", kcal: 119, c: 23, p: 3.5, f: 1, portion: "一碗 150g",
+    cnGroup: "grain-whole", usGroup: "grains-whole", regions: ["beijing","dongbei","shandong"] },
+  { name: "玉米", en: "Steamed Corn", cat: "carb", kcal: 112, c: 23, p: 4, f: 1.3, portion: "一根 200g",
+    cnGroup: "grain-whole", usGroup: "vegetables", regions: ["dongbei","beijing","shandong","yue","fujian"] },
+  { name: "藜麦", en: "Quinoa (cooked)", cat: "carb", kcal: 120, c: 21, p: 4.4, f: 1.9, portion: "一份 100g",
+    cnGroup: "grain-whole", usGroup: "grains-whole", regions: ["beijing","jiangsu"] },
+  { name: "荞麦面", en: "Buckwheat Noodles", cat: "carb", kcal: 99, c: 20, p: 3.6, f: 0.5, portion: "熟重 150g",
+    cnGroup: "grain-whole", usGroup: "grains-whole", regions: ["dongbei","beijing"] },
+  { name: "全麦馒头", en: "Whole-Wheat Mantou", cat: "carb", kcal: 220, c: 44, p: 8, f: 1.2, portion: "一个 80g",
+    cnGroup: "grain-whole", usGroup: "grains-whole", regions: ["shandong","beijing","dongbei"] },
+  { name: "白米饭", en: "White Rice (cooked)", cat: "carb", kcal: 130, c: 28, p: 2.7, f: 0.3, portion: "一碗 130g",
+    cnGroup: "grain-refined", usGroup: "grains-refined", regions: ["yue","jiangsu","sichuan","anhui","fujian","zhejiang","hunan","shandong"] },
+  { name: "粿条", en: "Rice Noodles (Teochew)", cat: "carb", kcal: 110, c: 24, p: 2, f: 0.4, portion: "一份 100g",
+    cnGroup: "grain-refined", usGroup: "grains-refined", regions: ["yue","fujian"] },
+  { name: "河粉", en: "Wide Rice Noodles", cat: "carb", kcal: 109, c: 24, p: 2, f: 0.4, portion: "一份 100g",
+    cnGroup: "grain-refined", usGroup: "grains-refined", regions: ["yue"] },
+  { name: "刀削面", en: "Knife-Cut Noodles", cat: "carb", kcal: 138, c: 28, p: 4.5, f: 0.6, portion: "熟重 150g",
+    cnGroup: "grain-refined", usGroup: "grains-refined", regions: ["beijing","shandong","dongbei"] },
+  { name: "全麦面包", en: "Whole-Wheat Bread", cat: "carb", kcal: 247, c: 41, p: 13, f: 3.4, portion: "一片 35g",
+    cnGroup: "grain-whole", usGroup: "grains-whole", regions: ["beijing"] },
+  { name: "意面", en: "Whole-Wheat Pasta", cat: "carb", kcal: 158, c: 32, p: 5.8, f: 0.9, portion: "熟重 100g",
+    cnGroup: "grain-whole", usGroup: "grains-whole", regions: ["beijing"] },
+  // 薯类
+  { name: "红薯", en: "Sweet Potato", cat: "carb", kcal: 86, c: 20, p: 1.6, f: 0.1, portion: "一根 130g",
+    cnGroup: "tuber", usGroup: "vegetables", regions: ["yue","fujian","jiangsu","sichuan","anhui","zhejiang","hunan","shandong","beijing","dongbei"] },
+  { name: "紫薯", en: "Purple Sweet Potato", cat: "carb", kcal: 90, c: 21, p: 1.5, f: 0.2, portion: "一根 130g",
+    cnGroup: "tuber", usGroup: "vegetables", regions: ["jiangsu","zhejiang","fujian","yue"] },
+  { name: "土豆", en: "Potato (steamed)", cat: "carb", kcal: 87, c: 20, p: 1.9, f: 0.1, portion: "一个 150g",
+    cnGroup: "tuber", usGroup: "vegetables", regions: ["dongbei","beijing","shandong","sichuan"] },
+  { name: "山药", en: "Chinese Yam", cat: "carb", kcal: 56, c: 12, p: 1.9, f: 0.2, portion: "一段 150g",
+    cnGroup: "tuber", usGroup: "vegetables", regions: ["shandong","jiangsu","beijing"] },
+  // 杂豆
+  { name: "红豆(熟)", en: "Adzuki Beans", cat: "carb", kcal: 128, c: 25, p: 8, f: 0.1, portion: "一份 100g",
+    cnGroup: "grain-whole", usGroup: "vegetables", regions: ["yue","jiangsu","fujian","zhejiang"] },
+  { name: "绿豆(熟)", en: "Mung Beans", cat: "carb", kcal: 105, c: 19, p: 7, f: 0.4, portion: "一份 100g",
+    cnGroup: "grain-whole", usGroup: "vegetables", regions: ["yue","beijing","fujian","jiangsu","shandong"] },
+
+  // ===== 蛋白质 (protein) =====
+  { name: "鸡胸肉", en: "Chicken Breast", cat: "protein", kcal: 133, c: 0, p: 24, f: 4, portion: "一份 100g",
+    cnGroup: "meat", usGroup: "protein-meat", regions: ["yue","jiangsu","sichuan","anhui","fujian","zhejiang","hunan","shandong","beijing","dongbei"] },
+  { name: "去皮鸡腿", en: "Skinless Chicken Thigh", cat: "protein", kcal: 155, c: 0, p: 22, f: 7, portion: "一只 60g",
+    cnGroup: "meat", usGroup: "protein-meat", regions: ["yue","sichuan","hunan","anhui","fujian","zhejiang","beijing","dongbei"] },
+  { name: "瘦牛肉", en: "Lean Beef", cat: "protein", kcal: 145, c: 0, p: 22, f: 5.5, portion: "一份 110g",
+    cnGroup: "meat", usGroup: "protein-meat", regions: ["sichuan","hunan","beijing","dongbei","shandong"] },
+  { name: "猪瘦肉", en: "Lean Pork", cat: "protein", kcal: 143, c: 1.5, p: 20.3, f: 6.2, portion: "一份 100g",
+    cnGroup: "meat", usGroup: "protein-meat", regions: ["yue","jiangsu","sichuan","anhui","fujian","zhejiang","hunan","shandong","beijing","dongbei"] },
+  { name: "鸭胸肉", en: "Duck Breast (skinless)", cat: "protein", kcal: 140, c: 0, p: 19.9, f: 6, portion: "一份 100g",
+    cnGroup: "meat", usGroup: "protein-meat", regions: ["jiangsu","yue","anhui","sichuan"] },
+  { name: "羊瘦肉", en: "Lean Lamb", cat: "protein", kcal: 158, c: 0, p: 20, f: 8, portion: "一份 100g",
+    cnGroup: "meat", usGroup: "protein-meat", regions: ["beijing","dongbei","shandong"] },
+  // 鱼虾
+  { name: "鲈鱼", en: "Sea Bass", cat: "protein", kcal: 105, c: 0, p: 18.6, f: 3.4, portion: "一段 110g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["yue","jiangsu","fujian","zhejiang","anhui"] },
+  { name: "鳕鱼", en: "Cod Fillet", cat: "protein", kcal: 82, c: 0, p: 18, f: 0.7, portion: "一段 110g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["shandong","yue","beijing","dongbei"] },
+  { name: "三文鱼", en: "Salmon", cat: "protein", kcal: 208, c: 0, p: 20, f: 13, portion: "一段 100g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["beijing","yue","shandong"] },
+  { name: "草鱼", en: "Grass Carp", cat: "protein", kcal: 113, c: 0, p: 16.6, f: 5.2, portion: "一段 110g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["jiangsu","anhui","hunan","sichuan","zhejiang","yue"] },
+  { name: "黄花鱼", en: "Yellow Croaker", cat: "protein", kcal: 99, c: 0, p: 17.7, f: 2.5, portion: "一条 200g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["fujian","yue","shandong","zhejiang"] },
+  { name: "鲫鱼", en: "Crucian Carp", cat: "protein", kcal: 108, c: 0, p: 17.1, f: 2.7, portion: "一条 200g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["jiangsu","anhui","sichuan","hunan","hubei"] },
+  { name: "鲜虾", en: "Fresh Prawns", cat: "protein", kcal: 99, c: 0.2, p: 24, f: 0.3, portion: "一份 90g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["yue","fujian","jiangsu","zhejiang","shandong"] },
+  { name: "鱿鱼", en: "Squid", cat: "protein", kcal: 92, c: 3, p: 15.6, f: 1.4, portion: "一份 100g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["yue","fujian","zhejiang","shandong"] },
+  { name: "蛤蜊", en: "Clams", cat: "protein", kcal: 86, c: 4.6, p: 14, f: 1.3, portion: "一份 150g",
+    cnGroup: "fish", usGroup: "protein-seafood", regions: ["yue","fujian","jiangsu","zhejiang","shandong"] },
+  // 蛋
+  { name: "鸡蛋", en: "Whole Egg", cat: "protein", kcal: 144, c: 0.7, p: 13.1, f: 9.5, portion: "一颗 50g",
+    cnGroup: "egg", usGroup: "protein-egg", regions: ["yue","jiangsu","sichuan","anhui","fujian","zhejiang","hunan","shandong","beijing","dongbei"] },
+  { name: "蛋白", en: "Egg White", cat: "protein", kcal: 52, c: 0.7, p: 11, f: 0.2, portion: "一颗蛋白 33g",
+    cnGroup: "egg", usGroup: "protein-egg", regions: ["yue","jiangsu","beijing"] },
+  // 奶
+  { name: "纯牛奶", en: "Whole Milk", cat: "protein", kcal: 64, c: 4.7, p: 3.3, f: 3.6, portion: "一杯 250ml",
+    cnGroup: "dairy", usGroup: "dairy", regions: ["beijing","dongbei","shandong","jiangsu","yue"] },
+  { name: "脱脂牛奶", en: "Skim Milk", cat: "protein", kcal: 35, c: 5, p: 3.4, f: 0.1, portion: "一杯 250ml",
+    cnGroup: "dairy", usGroup: "dairy", regions: ["beijing","jiangsu"] },
+  { name: "无糖希腊酸奶", en: "Plain Greek Yogurt", cat: "protein", kcal: 59, c: 3.6, p: 10, f: 0.4, portion: "一杯 150g",
+    cnGroup: "dairy", usGroup: "dairy", regions: ["beijing","jiangsu","yue"] },
+  { name: "低脂奶酪", en: "Low-Fat Cheese", cat: "protein", kcal: 173, c: 1.2, p: 24, f: 7, portion: "一片 30g",
+    cnGroup: "dairy", usGroup: "dairy", regions: ["beijing"] },
+  // 大豆
+  { name: "嫩豆腐", en: "Silken Tofu", cat: "protein", kcal: 56, c: 1.5, p: 6.2, f: 2.7, portion: "一份 150g",
+    cnGroup: "soy", usGroup: "protein-soy", regions: ["yue","jiangsu","anhui","fujian","zhejiang","sichuan","hunan","shandong","beijing","dongbei"] },
+  { name: "老豆腐", en: "Firm Tofu", cat: "protein", kcal: 98, c: 2.4, p: 12, f: 4.8, portion: "一份 120g",
+    cnGroup: "soy", usGroup: "protein-soy", regions: ["yue","jiangsu","sichuan","anhui","fujian","zhejiang","hunan","shandong","beijing","dongbei"] },
+  { name: "豆干", en: "Dried Tofu", cat: "protein", kcal: 142, c: 4.5, p: 17, f: 6.5, portion: "一片 80g",
+    cnGroup: "soy", usGroup: "protein-soy", regions: ["yue","jiangsu","fujian","sichuan","anhui","zhejiang"] },
+  { name: "无糖豆浆", en: "Soy Milk", cat: "protein", kcal: 32, c: 1.2, p: 3.6, f: 1.6, portion: "一杯 250ml",
+    cnGroup: "soy", usGroup: "protein-soy", regions: ["yue","jiangsu","sichuan","beijing","shandong","fujian"] },
+
+  // ===== 脂肪源 (fat) =====
+  { name: "牛油果", en: "Avocado", cat: "fat", kcal: 160, c: 8.5, p: 2, f: 14.7, portion: "半颗 80g",
+    cnGroup: "fruit", usGroup: "fruits", regions: ["beijing","yue"] },
+  { name: "巴旦木", en: "Almonds", cat: "fat", kcal: 579, c: 22, p: 21, f: 50, portion: "一把 20g",
+    cnGroup: "nut", usGroup: "protein-nut", regions: ["beijing","jiangsu"] },
+  { name: "核桃", en: "Walnuts", cat: "fat", kcal: 654, c: 14, p: 15, f: 65, portion: "一把 20g",
+    cnGroup: "nut", usGroup: "protein-nut", regions: ["beijing","shandong","dongbei"] },
+  { name: "腰果", en: "Cashews", cat: "fat", kcal: 553, c: 30, p: 18, f: 44, portion: "一把 20g",
+    cnGroup: "nut", usGroup: "protein-nut", regions: ["yue","fujian"] },
+  { name: "花生", en: "Peanuts", cat: "fat", kcal: 567, c: 16, p: 26, f: 49, portion: "一把 20g",
+    cnGroup: "nut", usGroup: "protein-nut", regions: ["shandong","sichuan","hunan","yue","fujian","beijing"] },
+  { name: "橄榄油", en: "Olive Oil", cat: "fat", kcal: 884, c: 0, p: 0, f: 100, portion: "一勺 5g",
+    cnGroup: "oil", usGroup: "oils", regions: ["beijing"] },
+  { name: "亚麻籽", en: "Flaxseed", cat: "fat", kcal: 534, c: 29, p: 18, f: 42, portion: "一勺 10g",
+    cnGroup: "nut", usGroup: "protein-nut", regions: ["beijing"] },
+  { name: "芝麻酱", en: "Sesame Paste", cat: "fat", kcal: 595, c: 21, p: 17, f: 53, portion: "一勺 10g",
+    cnGroup: "nut", usGroup: "protein-nut", regions: ["beijing","sichuan","shandong","hunan"] },
+
+  // ===== 蔬菜 (veg) - 深色绿叶 =====
+  { name: "西兰花", en: "Broccoli", cat: "veg", kcal: 34, c: 7, p: 2.8, f: 0.4, portion: "一份 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue","jiangsu","sichuan","anhui","fujian","zhejiang","hunan","shandong","beijing","dongbei"] },
+  { name: "菠菜", en: "Spinach", cat: "veg", kcal: 23, c: 3.6, p: 2.9, f: 0.4, portion: "一把 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["jiangsu","sichuan","anhui","zhejiang","hunan","shandong","beijing","dongbei"] },
+  { name: "芥蓝", en: "Chinese Kale", cat: "veg", kcal: 22, c: 4.3, p: 1.1, f: 0.3, portion: "一份 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue","fujian"] },
+  { name: "潮州春菜", en: "Teochew Mustard Greens", cat: "veg", kcal: 23, c: 3.9, p: 2.3, f: 0.4, portion: "一份 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue"] },
+  { name: "油麦菜", en: "Indian Lettuce", cat: "veg", kcal: 15, c: 2.1, p: 1.4, f: 0.4, portion: "一把 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue","fujian","sichuan","jiangsu"] },
+  { name: "通菜", en: "Water Spinach", cat: "veg", kcal: 19, c: 3.1, p: 2.6, f: 0.2, portion: "一把 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue","fujian","sichuan","hunan"] },
+  { name: "上海青", en: "Bok Choy", cat: "veg", kcal: 13, c: 2.2, p: 1.5, f: 0.2, portion: "一把 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["zhejiang","jiangsu","anhui","yue","fujian","beijing"] },
+  { name: "茼蒿", en: "Crown Daisy", cat: "veg", kcal: 21, c: 3.6, p: 1.9, f: 0.3, portion: "一把 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue","fujian","zhejiang","sichuan","jiangsu","hunan"] },
+  { name: "韭菜", en: "Chinese Chives", cat: "veg", kcal: 26, c: 4.2, p: 2.4, f: 0.4, portion: "一把 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["beijing","dongbei","shandong","sichuan"] },
+  { name: "苋菜", en: "Amaranth", cat: "veg", kcal: 27, c: 5.2, p: 2.5, f: 0.4, portion: "一把 200g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue","fujian","zhejiang","jiangsu"] },
+  // 茄果瓜菜
+  { name: "苦瓜", en: "Bitter Melon", cat: "veg", kcal: 19, c: 4.3, p: 0.9, f: 0.2, portion: "半根 150g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue","fujian"] },
+  { name: "黄瓜", en: "Cucumber", cat: "veg", kcal: 16, c: 3.6, p: 0.7, f: 0.1, portion: "一根 200g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["beijing","dongbei","shandong","jiangsu","sichuan","yue"] },
+  { name: "番茄", en: "Tomato", cat: "veg", kcal: 18, c: 3.9, p: 0.9, f: 0.2, portion: "一颗 150g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["beijing","dongbei","shandong","jiangsu","sichuan","yue","hunan"] },
+  { name: "茄子", en: "Eggplant", cat: "veg", kcal: 25, c: 5.9, p: 1, f: 0.2, portion: "半根 150g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["dongbei","sichuan","hunan","shandong","jiangsu"] },
+  { name: "冬瓜", en: "Winter Melon", cat: "veg", kcal: 11, c: 2.4, p: 0.4, f: 0.1, portion: "一份 200g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["yue","fujian","zhejiang","jiangsu","sichuan"] },
+  { name: "丝瓜", en: "Luffa", cat: "veg", kcal: 20, c: 4.4, p: 1, f: 0.2, portion: "一份 150g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["yue","fujian","jiangsu","zhejiang"] },
+  // 根茎
+  { name: "白萝卜", en: "Daikon Radish", cat: "veg", kcal: 18, c: 4.1, p: 0.6, f: 0.1, portion: "一份 200g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["beijing","dongbei","shandong","yue","fujian","jiangsu"] },
+  { name: "胡萝卜", en: "Carrot", cat: "veg", kcal: 41, c: 9.6, p: 0.9, f: 0.2, portion: "一根 100g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["beijing","dongbei","shandong","jiangsu","sichuan"] },
+  { name: "莲藕", en: "Lotus Root", cat: "veg", kcal: 74, c: 17, p: 1.7, f: 0.1, portion: "一段 150g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["jiangsu","anhui","hunan","zhejiang","yue"] },
+  // 菌类
+  { name: "金针菇", en: "Enoki", cat: "veg", kcal: 37, c: 7.8, p: 2.7, f: 0.3, portion: "一把 150g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["yue","jiangsu","sichuan","beijing","dongbei"] },
+  { name: "香菇", en: "Shiitake", cat: "veg", kcal: 34, c: 6.8, p: 2.2, f: 0.5, portion: "一份 100g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["fujian","zhejiang","jiangsu","yue","anhui"] },
+  { name: "杏鲍菇", en: "King Oyster", cat: "veg", kcal: 33, c: 8.3, p: 1.6, f: 0.2, portion: "一份 100g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["yue","jiangsu","sichuan","fujian","zhejiang"] },
+  { name: "木耳", en: "Wood Ear", cat: "veg", kcal: 27, c: 6.6, p: 1.5, f: 0.2, portion: "泡发后 100g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["dongbei","beijing","sichuan","shandong","fujian"] },
+  // 其他
+  { name: "豆芽", en: "Bean Sprouts", cat: "veg", kcal: 30, c: 5.9, p: 3, f: 0.2, portion: "一把 150g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["yue","fujian","jiangsu","sichuan","beijing","dongbei","shandong"] },
+  { name: "秋葵", en: "Okra", cat: "veg", kcal: 33, c: 7.5, p: 1.9, f: 0.2, portion: "一份 100g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["yue","fujian","jiangsu","zhejiang"] },
+  { name: "酸菜(白菜)", en: "Pickled Cabbage", cat: "veg", kcal: 14, c: 2.5, p: 1.3, f: 0.2, portion: "一份 100g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["dongbei","sichuan"] },
+  { name: "大白菜", en: "Napa Cabbage", cat: "veg", kcal: 13, c: 2.2, p: 1.5, f: 0.2, portion: "一份 200g",
+    cnGroup: "veg-light", usGroup: "vegetables", regions: ["dongbei","beijing","shandong"] },
+  { name: "豆角", en: "Long Beans", cat: "veg", kcal: 30, c: 5.6, p: 2.4, f: 0.4, portion: "一份 150g", isDark: true,
+    cnGroup: "veg-dark", usGroup: "vegetables", regions: ["sichuan","hunan","dongbei","beijing"] },
+
+  // ===== 水果 =====
+  { name: "蓝莓", en: "Blueberries", cat: "carb", kcal: 57, c: 14, p: 0.7, f: 0.3, portion: "一杯 100g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["beijing","dongbei"] },
+  { name: "苹果", en: "Apple", cat: "carb", kcal: 52, c: 14, p: 0.3, f: 0.2, portion: "一颗 180g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["shandong","beijing","dongbei","jiangsu"] },
+  { name: "香蕉", en: "Banana", cat: "carb", kcal: 89, c: 23, p: 1.1, f: 0.3, portion: "一根 120g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["yue","fujian","beijing"] },
+  { name: "草莓", en: "Strawberries", cat: "carb", kcal: 32, c: 7.7, p: 0.7, f: 0.3, portion: "一杯 150g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["jiangsu","beijing","zhejiang","shandong"] },
+  { name: "猕猴桃", en: "Kiwi", cat: "carb", kcal: 61, c: 15, p: 1.1, f: 0.5, portion: "一颗 80g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["sichuan","jiangsu","beijing"] },
+  { name: "橙子", en: "Orange", cat: "carb", kcal: 47, c: 12, p: 0.9, f: 0.1, portion: "一颗 130g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["yue","fujian","sichuan","jiangsu"] },
+  { name: "梨", en: "Pear", cat: "carb", kcal: 57, c: 15, p: 0.4, f: 0.1, portion: "一颗 180g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["shandong","beijing","jiangsu","anhui"] },
+  { name: "葡萄", en: "Grapes", cat: "carb", kcal: 69, c: 18, p: 0.7, f: 0.2, portion: "一杯 150g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["shandong","jiangsu","beijing"] },
+  { name: "火龙果", en: "Dragon Fruit", cat: "carb", kcal: 60, c: 13, p: 1.2, f: 0.4, portion: "半颗 150g", isFruit: true,
+    cnGroup: "fruit", usGroup: "fruits", regions: ["yue","fujian"] }
+];
+
+// ====================================================================
+// 八大菜系定义
+// ====================================================================
+const cuisines = [
+  {
+    id: 'yue', name: '粤菜', en: 'Cantonese',
+    desc: '清淡鲜活,讲究原味。以蒸、白灼、滚汤为主,少油少调,海鲜河鲜与时令蔬菜的天堂。',
+    tags: ['清淡', '蒸煮', '白灼', '原味', '海鲜'],
+    methods: ['白灼', '清蒸', '滚汤', '清炒', '上汤', '蒜蓉蒸'],
+    flavorBias: 'mild',
+    subRegions: [
+      { id: 'guangfu', name: '广府', en: 'Guangfu', methods: ['白灼','清蒸','滚汤','上汤','清炒'] },
+      { id: 'chaoshan', name: '潮汕', en: 'Teochew', methods: ['白灼','清蒸','滚汤','凉拌','卤水'] },
+      { id: 'kejia', name: '客家', en: 'Hakka', methods: ['焖煮','酿造','蒸','清炖','咸香'] }
+    ]
+  },
+  {
+    id: 'sichuan', name: '川菜', en: 'Sichuan',
+    desc: '麻辣鲜香,百菜百味。郫县豆瓣、花椒、辣椒构成灵魂,但减脂版可水煮、干煸、清蒸代替重油。',
+    tags: ['麻辣', '鲜香', '水煮', '干煸', '一菜一格'],
+    methods: ['水煮', '干煸', '清蒸', '凉拌', '宫保', '鱼香'],
+    flavorBias: 'spicy',
+    subRegions: [
+      { id: 'chengdu', name: '成都', en: 'Chengdu', methods: ['水煮','麻婆','宫保','鱼香','清蒸'] },
+      { id: 'chongqing', name: '重庆', en: 'Chongqing', methods: ['水煮','干煸','麻辣','烫','清蒸'] },
+      { id: 'zigong', name: '自贡', en: 'Zigong', methods: ['爆炒','干煸','水煮','凉拌'] }
+    ]
+  },
+  {
+    id: 'jiangsu', name: '苏菜', en: 'Jiangsu',
+    desc: '咸甜适口,刀工精细。淮扬菜以清炖、清蒸闻名,讲究食材本味与精致摆盘。',
+    tags: ['清鲜', '咸甜', '刀工', '清炖', '精致'],
+    methods: ['清炖', '清蒸', '白煮', '凉拌', '清炒'],
+    flavorBias: 'mild-sweet',
+    subRegions: [
+      { id: 'huaiyang', name: '淮扬', en: 'Huaiyang', methods: ['清炖','清蒸','水煮','烫','凉拌'] },
+      { id: 'jinling', name: '金陵', en: 'Jinling', methods: ['盐水煮','清炖','卤煮'] },
+      { id: 'sushang', name: '苏锡', en: 'Suxi', methods: ['清炖','水煮','清蒸'] }
+    ]
+  },
+  {
+    id: 'beijing', name: '京菜', en: 'Beijing',
+    desc: '兼容并蓄,鲁菜底子。涮、烤、爆是标志,但减脂可用清汤、白煮、凉拌呈现帝都味道。',
+    tags: ['醇厚', '涮煮', '清汤', '酱香', '面食'],
+    methods: ['清汤涮', '白煮', '凉拌', '清蒸', '酱'],
+    flavorBias: 'mild-savory',
+    subRegions: [
+      { id: 'gongting', name: '宫廷', en: 'Imperial', methods: ['清蒸','白煮','清炖'] },
+      { id: 'jiachang', name: '家常', en: 'Home', methods: ['清汤涮','白煮','凉拌'] }
+    ]
+  },
+  {
+    id: 'dongbei', name: '东北菜', en: 'Dongbei',
+    desc: '豪爽实在,量大管饱。乱炖、烀煮是日常,减脂版可清炖、水煮、清蒸,不丢豪迈。',
+    tags: ['豪迈', '炖煮', '量大', '酸菜', '杂粮'],
+    methods: ['清炖', '水煮', '锅烹', '凉拌', '清蒸'],
+    flavorBias: 'mild-savory',
+    subRegions: [
+      { id: 'liaoning', name: '辽菜', en: 'Liao', methods: ['清炖','水煮','凉拌','清蒸'] },
+      { id: 'jilin', name: '吉菜', en: 'Ji', methods: ['炖','烀','清蒸'] },
+      { id: 'heilongjiang', name: '龙菜', en: 'Heilongjiang', methods: ['锅烹','清炖','酸菜煮'] }
+    ]
+  },
+  {
+    id: 'hunan', name: '湘菜', en: 'Hunan',
+    desc: '香辣下饭,熏腊见长。减脂版用鲜辣代替重油,蒸菜与剁椒系列适合控油。',
+    tags: ['香辣', '鲜辣', '蒸', '剁椒', '酸辣'],
+    methods: ['剁椒蒸', '清蒸', '小炒', '凉拌', '酸辣'],
+    flavorBias: 'spicy',
+    subRegions: [
+      { id: 'xiangjiang', name: '湘江', en: 'Xiangjiang', methods: ['小炒','清蒸','剁椒'] },
+      { id: 'dongting', name: '洞庭', en: 'Dongting', methods: ['清蒸','酸辣汤'] }
+    ]
+  },
+  {
+    id: 'zhejiang', name: '浙菜', en: 'Zhejiang',
+    desc: '清鲜爽脆,东海之滨。讲究鲜活本味,白切、清蒸、爽脆凉拌是减脂良配。',
+    tags: ['清鲜', '爽脆', '本味', '河鲜', '海鲜'],
+    methods: ['白切', '清蒸', '清炒', '凉拌', '盐水煮'],
+    flavorBias: 'mild',
+    subRegions: [
+      { id: 'hangzhou', name: '杭帮', en: 'Hangzhou', methods: ['西湖醋','清蒸','白切'] },
+      { id: 'ningbo', name: '甬帮', en: 'Ningbo', methods: ['清蒸','盐水煮','咸鲜'] },
+      { id: 'shaoxing', name: '绍兴', en: 'Shaoxing', methods: ['清蒸','白煮','糟溜'] }
+    ]
+  },
+  {
+    id: 'fujian', name: '闽菜', en: 'Fujian',
+    desc: '鲜醇清淡,汤菜见长。山珍海味同烩,减脂版以清汤、白灼、清蒸保留闽地海风。',
+    tags: ['清汤', '白灼', '鲜醇', '海味', '清淡'],
+    methods: ['清汤', '白灼', '清蒸', '清炖', '凉拌'],
+    flavorBias: 'mild',
+    subRegions: [
+      { id: 'fuzhou', name: '福州', en: 'Fuzhou', methods: ['清汤','白灼','清蒸'] },
+      { id: 'minnan', name: '闽南', en: 'Minnan', methods: ['白灼','清蒸','凉拌'] }
+    ]
+  }
+];
+
+// ====================================================================
+// 烹饪法库 — 每个做法有名字模板、标签、详细步骤、贴士、时长
+// 用 {ing}/{ing2} 占位主食材
+// ====================================================================
+const cookingMethods = {
+  // === 粤菜 ===
+  '白灼': {
+    tag: '白灼·清淡', name: '白灼{ing}', timeMin: 8,
+    needsAux: ['姜片3片', '葱段适量', '盐少许'],
+    steps: [
+      '清水煮沸,加入姜片、葱段、少许盐',
+      '将{ing}放入沸水中,大火快烫(海鲜30秒-1分钟,蔬菜2-3分钟)',
+      '捞出沥水装盘',
+      '蒜末配生抽淋面或另碟蘸食(减脂版可用蒸鱼豉油)'
+    ],
+    tip: '减脂关键:全程不加油,用海盐与蒸鱼豉油提鲜。煮蔬菜的水滴几滴橄榄油可让色泽更亮但热量几乎不增。'
+  },
+  '清蒸': {
+    tag: '清蒸·原味', name: '清蒸{ing}', timeMin: 12,
+    needsAux: ['姜丝5g', '葱丝5g', '蒸鱼豉油1勺'],
+    steps: [
+      '{ing}处理干净,鱼类划两刀,肉类切片或整块',
+      '盘底铺姜片,放上{ing},撒少许盐(约0.5g)',
+      '水开后上蒸锅,大火蒸8-10分钟(看大小调整)',
+      '出锅淋蒸鱼豉油,撒葱丝,可省去最后泼油那一步'
+    ],
+    tip: '"清"字诀在于火大水足、一气呵成。家庭蒸锅水量要够,中途不开盖。蛋白质类不超过12分钟以保持嫩度。'
+  },
+  '滚汤': {
+    tag: '滚汤·清润', name: '{ing}滚汤', timeMin: 15,
+    needsAux: ['姜片2片', '盐少许', '白胡椒少许'],
+    steps: [
+      '锅中加水或清鸡汤(约600ml)、姜片煮沸',
+      '加入主料{ing},中火滚10-12分钟',
+      '加入配菜(豆腐/番茄/绿叶菜)再煮2分钟',
+      '调味:盐少许、白胡椒少许、几滴香油(可省)'
+    ],
+    tip: '"滚"非"炖":时间短、保留食材的鲜与脆。粤式滚汤不放鸡精,鲜味全靠食材本身。'
+  },
+  '清炒': {
+    tag: '清炒·少油', name: '清炒{ing}', timeMin: 6,
+    needsAux: ['蒜2瓣切片', '盐0.5g', '橄榄油3-5g'],
+    steps: [
+      '{ing}洗净沥干,叶菜手撕,瓜茄切片',
+      '热锅冷油(用橄榄油约一茶匙),爆香蒜片',
+      '大火下{ing}快炒,听到脆响时加少许水避免粘锅',
+      '加盐调味,翻炒均匀立即出锅(全程不超过3分钟)'
+    ],
+    tip: '减脂版核心:油量控制在3-5克,大火快炒锁住水分。叶菜出水多,可后期勾点芡(玉米淀粉1g+水)增加挂汁感。'
+  },
+  '上汤': {
+    tag: '上汤·鲜润', name: '上汤{ing}', timeMin: 18,
+    needsAux: ['咸蛋1颗', '皮蛋1颗', '蒜片', '清鸡汤300ml'],
+    steps: [
+      '咸蛋黄、皮蛋切丁,蒜片爆香',
+      '加入清鸡汤(可用低钠鸡精+水替代),煮沸',
+      '放入{ing}煮3-5分钟至断生',
+      '调味出锅,皮蛋咸蛋已自带咸鲜可不再加盐'
+    ],
+    tip: '"上汤"是粤式蔬菜的高级吃法。减脂版用清鸡汤替代浓汤底,咸蛋皮蛋天然增鲜。'
+  },
+  '蒜蓉蒸': {
+    tag: '蒜蓉蒸·香气', name: '蒜蓉蒸{ing}', timeMin: 12,
+    needsAux: ['蒜末15g', '蒸鱼豉油1勺', '橄榄油3g'],
+    steps: [
+      '{ing}处理后摆盘',
+      '蒜末分两份:一份生蒜末、一份用极少油(2-3g)炒香至金黄',
+      '将两种蒜末混合铺在{ing}上,淋少许蒸鱼豉油',
+      '水开后大火蒸6-8分钟(海鲜)或10分钟(蔬菜),出锅撒葱花'
+    ],
+    tip: '"金银蒜"做法:生蒜辛辣、熟蒜香甜,层次更丰富。海鲜类如虾、扇贝、鱿鱼最适合此法。'
+  },
+  '凉拌': {
+    tag: '凉拌·爽口', name: '凉拌{ing}', timeMin: 8,
+    needsAux: ['蒜末5g', '香醋1勺', '生抽1勺', '小米椒(可选)'],
+    steps: [
+      '{ing}焯水或切丝(看食材而定),冰水过凉',
+      '碗中调汁:生抽1勺、香醋1勺、蒜末、少许糖(可省)、小米椒',
+      '将{ing}与调料拌匀',
+      '撒少许熟芝麻或葱花,腌5分钟入味'
+    ],
+    tip: '减脂凉拌的灵魂是"醋"而非"油"。可选加几滴香油提香,但5g以内即可。'
+  },
+  '卤水': {
+    tag: '卤水·咸鲜', name: '潮式卤{ing}', timeMin: 30,
+    needsAux: ['八角2颗', '桂皮1段', '南姜', '生抽', '老抽少许'],
+    steps: [
+      '锅中加水500ml,放入八角、桂皮、南姜、葱姜',
+      '加生抽3勺、老抽1勺、冰糖少许(减脂可省),煮成卤水',
+      '{ing}放入卤水中,小火卤15-25分钟(豆腐15分钟,鸡蛋20分钟,肉类25分钟)',
+      '关火后浸泡至少30分钟更入味,切片装盘'
+    ],
+    tip: '潮式卤水核心是南姜和八角,色淡味鲜。减脂版省去冰糖,以食材本味为主。卤过的水可冷藏二次使用。'
+  },
+  '焖煮': {
+    tag: '焖煮·咸香', name: '客家焖{ing}', timeMin: 25,
+    needsAux: ['蒜瓣4颗', '生抽2勺', '老抽少许', '五香粉'],
+    steps: [
+      '{ing}切块,蒜瓣拍碎',
+      '不放油直接干锅煸炒至{ing}表面微焦(肉类自带油)',
+      '加生抽、少许老抽、五香粉、热水没过食材',
+      '小火焖煮15-20分钟,大火收汁'
+    ],
+    tip: '客家焖菜重在咸香入味,减脂版不额外加油,利用食材本身脂肪煸炒。收汁不要太干,留点汁可拌饭。'
+  },
+  '酿造': {
+    tag: '酿·客家', name: '客家酿{ing}', timeMin: 22,
+    needsAux: ['猪瘦肉糜80g', '香菇丁', '生抽', '玉米淀粉少许'],
+    steps: [
+      '{ing}(豆腐/苦瓜/茄子)挖空中间或切段',
+      '调馅:猪肉糜+香菇丁+生抽+少许淀粉,搅拌上劲',
+      '将馅料填入{ing}空腔',
+      '水开蒸15分钟,或少油煎至两面金黄后焖煮入味'
+    ],
+    tip: '酿菜是客家代表,荤素结合份量充足。减脂版用瘦肉糜,蒸而非煎可减少30%以上热量。'
+  },
+  '咸香': {
+    tag: '咸香·客家', name: '咸香{ing}', timeMin: 15,
+    needsAux: ['粗盐10g', '料酒1勺', '葱姜'],
+    steps: [
+      '{ing}用料酒、葱姜抓匀腌10分钟',
+      '锅底铺一层粗盐,放入{ing}',
+      '小火慢慢逼出香味,约10-12分钟',
+      '取出抖去多余盐分,直接食用或撕成丝凉拌'
+    ],
+    tip: '"盐焗"做法,鸡肉、虾蟹最常用。减脂版控制最终摄入盐量在2g内,粗盐主要作为加热介质。'
+  },
+  // === 川菜 ===
+  '水煮': {
+    tag: '水煮·麻辣', name: '水煮{ing}', timeMin: 20,
+    needsAux: ['豆瓣酱1勺', '花椒5g', '干辣椒', '蒜末', '配菜(豆芽/生菜)'],
+    steps: [
+      '{ing}切片,用蛋清+少许淀粉抓匀腌制',
+      '配菜(豆芽或生菜)焯水垫底',
+      '锅中少油(5g以内)爆香豆瓣酱、蒜末,加水或清汤煮开',
+      '{ing}片下锅煮2-3分钟至断生,连汤倒在配菜上',
+      '撒花椒粉、辣椒粉,淋少许热油激发香味(减脂版可省此步)'
+    ],
+    tip: '减脂版水煮的关键是"激"而不"泡":调料汤煮开后下肉,不让肉长时间浸在油汤中。最后省去那勺淋油可减30%热量。'
+  },
+  '干煸': {
+    tag: '干煸·少油版', name: '干煸{ing}', timeMin: 12,
+    needsAux: ['蒜末', '干辣椒', '花椒', '生抽1勺'],
+    steps: [
+      '{ing}(豆角/茄子条)洗净控干',
+      '不粘锅中放极少油(3-5g)中火煸炒{ing}至表面起虎皮',
+      '加入蒜末、干辣椒、花椒爆香',
+      '生抽、少许糖(可省)调味,翻匀出锅'
+    ],
+    tip: '传统干煸需大量油过水/过油,减脂版用不粘锅+耐心煸出{ing}的水分,达到类似口感而油量减半以上。'
+  },
+  '宫保': {
+    tag: '宫保·甜辣', name: '宫保{ing}', timeMin: 10,
+    needsAux: ['花生15g', '干辣椒', '葱白段', '生抽', '醋', '糖少许'],
+    steps: [
+      '{ing}切丁,用生抽+淀粉腌5分钟',
+      '调汁:生抽1勺+醋1勺+糖0.5勺+水2勺+淀粉少许',
+      '锅中少油爆香干辣椒、花椒、葱白',
+      '{ing}下锅大火快炒至变色,倒入调好的汁',
+      '加花生快速翻匀出锅(花生最后下保持脆)'
+    ],
+    tip: '宫保的"煳辣荔枝口"是甜酸辣层次。减脂版糖量减半,花生控制在15g以内(约一小把)。'
+  },
+  '鱼香': {
+    tag: '鱼香·咸鲜', name: '鱼香{ing}', timeMin: 12,
+    needsAux: ['泡椒1勺', '蒜末', '姜末', '葱花', '糖0.5勺', '醋1勺', '生抽'],
+    steps: [
+      '{ing}切丝或切片',
+      '调"鱼香汁":泡椒+蒜末+姜末+生抽1勺+醋1勺+糖少许+水2勺+淀粉',
+      '锅中少油(5g)炒香蒜姜',
+      '{ing}下锅快炒至变色',
+      '倒入鱼香汁,快速翻匀,撒葱花出锅'
+    ],
+    tip: '鱼香味"无鱼而有鱼香",来自泡椒发酵的复合咸鲜。减脂版用少糖少油,但泡椒不可省。'
+  },
+  '麻婆': {
+    tag: '麻婆·豆瓣', name: '麻婆{ing}', timeMin: 12,
+    needsAux: ['郫县豆瓣1勺', '花椒粉', '蒜末', '葱花', '高汤200ml'],
+    steps: [
+      '{ing}(常用豆腐)切丁,沸水加少许盐焯1分钟去豆腥',
+      '锅中少油(5g)炒香豆瓣酱至红油析出',
+      '加蒜末、姜末爆香,倒入高汤煮开',
+      '放入{ing}丁,小火煮5分钟入味',
+      '勾薄芡,撒花椒粉、葱花出锅'
+    ],
+    tip: '麻婆豆腐讲究"麻、辣、烫、香、酥、嫩、鲜、活"八字诀。减脂版用清汤替代肉末,豆瓣酱用量减半即可。'
+  },
+  '麻辣': {
+    tag: '麻辣·川味', name: '麻辣{ing}', timeMin: 10,
+    needsAux: ['花椒', '干辣椒', '蒜末', '生抽', '香油几滴'],
+    steps: [
+      '{ing}焯水或煮熟备用',
+      '锅中少油爆香花椒、干辣椒至香气出',
+      '{ing}下锅快炒,加生抽调味',
+      '出锅前淋几滴香油提香'
+    ],
+    tip: '减脂麻辣关键:辣椒花椒香气足,可减少对油盐的依赖。新鲜青花椒比干花椒香气更胜。'
+  },
+  '烫': {
+    tag: '烫煮·清汤底', name: '清汤烫{ing}', timeMin: 10,
+    needsAux: ['清鸡汤300ml', '姜片', '葱段', '盐少许'],
+    steps: [
+      '锅中放清鸡汤、姜葱煮沸',
+      '{ing}下锅烫煮,蔬菜30秒,蛋白类2-3分钟',
+      '捞出装碗,浇汤',
+      '另调蘸料:生抽+蒜末+辣椒油(可选)'
+    ],
+    tip: '重庆"烫"系是火锅的清淡版,完全可作减脂日常。汤底自由,蘸料决定风味强度。'
+  },
+  '爆炒': {
+    tag: '爆炒·猛火', name: '爆炒{ing}', timeMin: 5,
+    needsAux: ['蒜片', '干辣椒', '生抽', '料酒'],
+    steps: [
+      '{ing}切薄片或丝,料酒+少许淀粉抓匀',
+      '锅烧至冒烟,放少油(5g)立即下{ing}',
+      '猛火快炒10秒,加蒜片、干辣椒翻炒',
+      '生抽快速调味,15秒内出锅'
+    ],
+    tip: '爆炒讲究"急火短炒",全程不超过1分钟。减脂关键:油量5g,但火候必须够。'
+  },
+  // === 苏菜 ===
+  '清炖': {
+    tag: '清炖·吊汤', name: '清炖{ing}', timeMin: 35,
+    needsAux: ['姜片3片', '葱结', '料酒1勺', '盐'],
+    steps: [
+      '{ing}冷水下锅焯出血沫,捞出洗净',
+      '砂锅加足量水,放{ing}、姜葱、料酒',
+      '大火煮沸转小火慢炖30-40分钟',
+      '出锅前加盐调味,撇去多余浮油'
+    ],
+    tip: '淮扬清炖讲究"清而不淡,鲜而不腥"。减脂版炖好后冷藏一夜,撇去凝固的浮油即可减30%脂肪。'
+  },
+  '白煮': {
+    tag: '白煮·原味', name: '白煮{ing}', timeMin: 20,
+    needsAux: ['姜片', '葱段', '料酒1勺'],
+    steps: [
+      '{ing}冷水下锅,加姜葱、料酒',
+      '大火煮沸后转小火,蛋白类煮15-20分钟,蔬菜煮5-8分钟',
+      '关火浸泡5分钟更嫩',
+      '切片装盘,蘸生抽蒜泥'
+    ],
+    tip: '白煮看似简单,关键在火候。煮鸡肉/瘦肉用"虚煮"(开锅后小火浸熟),保持嫩度。'
+  },
+  '盐水煮': {
+    tag: '盐水·清香', name: '盐水{ing}', timeMin: 25,
+    needsAux: ['盐15g', '花椒5粒', '八角1颗', '葱姜'],
+    steps: [
+      '锅中加水800ml,放盐、花椒、八角、葱姜',
+      '煮沸后下{ing}',
+      '保持微沸状态煮15-20分钟',
+      '关火浸泡至少20分钟入味,切块装盘'
+    ],
+    tip: '金陵盐水鸭/虾的做法。减脂版选去皮鸡腿、虾、毛豆、鸭胸都可以,本身不加任何油。'
+  },
+  '卤煮': {
+    tag: '卤煮·清淡', name: '清卤{ing}', timeMin: 30,
+    needsAux: ['生抽3勺', '老抽少许', '八角', '香叶', '冰糖(可省)'],
+    steps: [
+      '调卤汁:生抽+少许老抽+八角+香叶+水500ml',
+      '{ing}焯水后放入卤汁',
+      '小火慢卤25-35分钟',
+      '关火浸泡入味,切片装盘'
+    ],
+    tip: '苏式清卤色淡味鲜,与川式重卤区别明显。减脂版省去冰糖,味道更清爽。'
+  },
+  // === 京菜 ===
+  '清汤涮': {
+    tag: '清汤涮·北京', name: '清汤涮{ing}', timeMin: 12,
+    needsAux: ['清水/清汤', '姜片', '虾干3颗(增鲜)', '芝麻酱蘸料'],
+    steps: [
+      '砂锅或铜锅加清水(可加几颗虾干、姜片增鲜)',
+      '{ing}切薄片(肉类要够薄),蔬菜切段',
+      '水沸后涮煮,肉片10-15秒、蔬菜30秒-1分钟',
+      '蘸芝麻酱(芝麻酱10g+腐乳5g+水稀释)食用'
+    ],
+    tip: '老北京涮羊肉清汤底最健康。减脂版蘸料控制在15g内,芝麻酱可用一半韭花酱替代降脂。'
+  },
+  '酱': {
+    tag: '酱·京味', name: '京酱{ing}', timeMin: 15,
+    needsAux: ['甜面酱1勺', '生抽1勺', '葱白丝', '黄瓜丝'],
+    steps: [
+      '{ing}(瘦肉/豆腐/鸡胸)切丝,料酒+蛋清+淀粉腌5分钟',
+      '不粘锅少油(3g)滑炒{ing}丝至变色',
+      '调酱:甜面酱1勺+生抽+少许水+少许糖,小火炒香',
+      '酱与{ing}丝拌匀,搭配葱白丝、黄瓜丝食用'
+    ],
+    tip: '京酱肉丝的减脂版:用瘦肉/鸡胸,甜面酱减半。可用生菜叶包食代替春饼,主食单独算。'
+  },
+  // === 东北 ===
+  '锅烹': {
+    tag: '锅烹·东北', name: '锅烹{ing}', timeMin: 12,
+    needsAux: ['蒜末', '生抽', '醋', '糖0.5勺', '葱花'],
+    steps: [
+      '{ing}切片,蛋清+淀粉抓匀',
+      '不粘锅少油(5g)煎/炒{ing}至两面变色',
+      '调汁:生抽+醋+少许糖+蒜末+水',
+      '汁倒入锅中,大火快烩30秒,撒葱花出锅'
+    ],
+    tip: '锅烹是东北家常做法,常见锅包肉就是其重油版。减脂版省去过油挂浆,保留咸甜酸口感。'
+  },
+  '酸菜煮': {
+    tag: '酸菜·东北', name: '酸菜煮{ing}', timeMin: 25,
+    needsAux: ['酸菜200g', '葱姜', '蒜片', '清汤500ml'],
+    steps: [
+      '酸菜挤干水分,切丝',
+      '锅中少油(3g)炒香葱姜蒜,放酸菜煸炒2分钟',
+      '加清汤煮沸',
+      '放入{ing}煮15-20分钟,出锅撒葱花'
+    ],
+    tip: '东北酸菜炖菜冬天首选。酸菜本身咸度高,煮前可水洗减盐。汤鲜味浓但热量极低。'
+  },
+  // === 湘菜 ===
+  '剁椒蒸': {
+    tag: '剁椒蒸·湘味', name: '剁椒蒸{ing}', timeMin: 15,
+    needsAux: ['剁椒1.5勺', '蒜末', '生抽1勺', '葱花'],
+    steps: [
+      '{ing}处理干净摆盘(鱼可在表面划两刀)',
+      '剁椒、蒜末铺在{ing}表面',
+      '淋生抽1勺,水开大火蒸10-12分钟',
+      '出锅撒葱花,可省去最后泼油那一步'
+    ],
+    tip: '剁椒鱼头是湘菜代表。减脂版完全省去最后那勺热油,鲜辣不打折。'
+  },
+  '小炒': {
+    tag: '小炒·湘式', name: '湘式小炒{ing}', timeMin: 8,
+    needsAux: ['青尖椒', '蒜片', '生抽', '少许豆豉'],
+    steps: [
+      '{ing}切丝/片,青尖椒切段',
+      '锅中少油(5g)爆香蒜片、豆豉',
+      '{ing}下锅猛火快炒至变色',
+      '加青椒、生抽快速翻匀,出锅'
+    ],
+    tip: '湘式小炒讲究"猛火爆炒",30秒到1分钟出锅。减脂关键是控油在5g内,辣椒不能省。'
+  },
+  '酸辣': {
+    tag: '酸辣·开胃', name: '酸辣{ing}', timeMin: 10,
+    needsAux: ['泡椒/泡野山椒', '蒜末', '醋', '生抽'],
+    steps: [
+      '{ing}切丝',
+      '锅中少油爆香蒜末、泡椒',
+      '{ing}下锅快炒至断生',
+      '加生抽、醋、少许糖调味,出锅'
+    ],
+    tip: '湘式酸辣的灵魂在泡椒。减脂版可用1勺白醋+少许辣椒粉替代,效果接近。'
+  },
+  '酸辣汤': {
+    tag: '酸辣汤·湘', name: '酸辣{ing}汤', timeMin: 12,
+    needsAux: ['醋1勺', '白胡椒1g', '生抽1勺', '蛋白1颗'],
+    steps: [
+      '清汤500ml煮沸,放入主料{ing}',
+      '加生抽、白胡椒粉、醋调味',
+      '勾薄芡(玉米淀粉3g+水)',
+      '蛋白搅散淋入,撒葱花、香菜'
+    ],
+    tip: '酸辣汤的减脂关键:用蛋白替代全蛋花、薄芡不勾厚芡,热量减半。'
+  },
+  // === 浙菜 ===
+  '白切': {
+    tag: '白切·原味', name: '白切{ing}', timeMin: 25,
+    needsAux: ['姜片', '葱结', '料酒'],
+    steps: [
+      '{ing}冷水下锅,加姜葱料酒',
+      '大火煮沸转小火,煮15-20分钟',
+      '关火浸泡10分钟,捞出过冰水',
+      '切片装盘,蘸料:生抽+蒜末+少许香油'
+    ],
+    tip: '白切讲究"清水煮、冰水镇",肉皮Q弹肉嫩。减脂版蘸料只用生抽蒜末,不加芝麻油。'
+  },
+  '糟溜': {
+    tag: '糟溜·绍兴', name: '糟溜{ing}', timeMin: 10,
+    needsAux: ['绍兴黄酒/糟卤2勺', '葱姜', '少许盐'],
+    steps: [
+      '{ing}切片,蛋清淀粉抓匀',
+      '锅中少油滑炒{ing}至变色',
+      '加糟卤、少许水煮1-2分钟',
+      '少许盐调味,大火收汁'
+    ],
+    tip: '糟卤是绍兴特色,不含糖、热量低。糟香味替代酱料,适合减脂期。'
+  },
+  '咸鲜': {
+    tag: '咸鲜·甬帮', name: '咸鲜{ing}', timeMin: 15,
+    needsAux: ['咸鱼/咸虾米5g', '葱姜', '少许糖'],
+    steps: [
+      '{ing}处理干净,咸鱼切碎',
+      '锅中少油爆香葱姜、咸鱼末',
+      '{ing}下锅翻炒/蒸煮',
+      '少许糖提鲜,出锅(咸鱼已自带咸味,不再加盐)'
+    ],
+    tip: '甬帮"咸下饭"做法,咸鱼用量5g足矣。减脂关键:不另加盐。'
+  },
+  '西湖醋': {
+    tag: '西湖醋·杭州', name: '西湖醋{ing}', timeMin: 12,
+    needsAux: ['镇江香醋2勺', '糖1勺', '生抽', '姜末'],
+    steps: [
+      '{ing}煮熟或蒸熟摆盘',
+      '锅中少油(2g)爆香姜末',
+      '加香醋2勺、糖1勺、生抽、水煮沸',
+      '勾薄芡,淋在{ing}上'
+    ],
+    tip: '西湖醋鱼的减脂版:糖量减半,鱼用清蒸而非滑油。糖醋汁热量主要来自糖,需控制。'
+  },
+  // === 闽菜 ===
+  '清汤': {
+    tag: '清汤·闽味', name: '清汤{ing}', timeMin: 18,
+    needsAux: ['清水/清鸡汤', '姜片', '蛤蜊几颗(增鲜)', '盐少许'],
+    steps: [
+      '锅中加水或清鸡汤,放姜片煮沸',
+      '可放几颗蛤蜊增鲜(取其汤,蛤肉单算)',
+      '{ing}下锅煮10-15分钟',
+      '少许盐和白胡椒调味,出锅撒葱花'
+    ],
+    tip: '闽菜清汤讲究"无浊不清",汤色清亮但味道醇厚。减脂版用海鲜增鲜替代猪骨高汤。'
+  }
+};
+
+// ====================================================================
+// 中国 / 美国膳食指南数据
+// 中国指南(2022,1600-2400 kcal):
+//   谷类 200-300g(含全谷物杂豆 50-150g) · 薯类 50-100g
+//   蔬菜 ≥300g(深色 ≥1/2) · 水果 200-350g
+//   畜禽肉 40-75g · 鱼虾 40-75g · 蛋 40-50g
+//   奶 300-500ml · 大豆 15-25g · 坚果 ≤10g
+//   烹调油 25-30g · 盐 ≤5g
+// 美国指南(2020-2025 + 2025-2030,2000 kcal):
+//   蔬菜 2.5 cup-eq (~300g) · 水果 2 cup-eq (~250g)
+//   全谷物 ≥3 oz-eq (~85g 干重)/总谷物 6 oz-eq · 乳制品 3 cup-eq (~720ml)
+//   蛋白质 5.5 oz-eq(海鲜 ~227g/周)
+// ====================================================================
+
+const guidelines = {
+  cn: {
+    sourceLabel: '来源:中国营养学会《中国居民膳食指南 (2022)》平衡膳食宝塔',
+    sourceUrl: 'http://dg.cnsoc.org/newslist_0402_1.htm',
+    groups: [
+      { id: 'grain-refined', name: '精制谷类', en: 'Refined Grains', min: 50, max: 150, unit: 'g', tip: '精米白面,与全谷物合计 200-300g' },
+      { id: 'grain-whole', name: '全谷物 + 杂豆', en: 'Whole Grains', min: 50, max: 150, unit: 'g', tip: '燕麦/糙米/小米/红豆等' },
+      { id: 'tuber', name: '薯类', en: 'Tubers', min: 50, max: 100, unit: 'g', tip: '红薯/紫薯/土豆/山药' },
+      { id: 'veg-dark', name: '深色蔬菜', en: 'Dark Vegetables', min: 150, max: 250, unit: 'g', tip: '占总蔬菜 ≥1/2' },
+      { id: 'veg-light', name: '浅色蔬菜', en: 'Light Vegetables', min: 150, max: 250, unit: 'g', tip: '与深色合计 ≥300g' },
+      { id: 'fruit', name: '水果', en: 'Fruits', min: 200, max: 350, unit: 'g', tip: '新鲜水果优先' },
+      { id: 'meat', name: '畜禽肉', en: 'Meat & Poultry', min: 40, max: 75, unit: 'g', tip: '少吃加工肉' },
+      { id: 'fish', name: '鱼虾水产', en: 'Fish & Seafood', min: 40, max: 75, unit: 'g', tip: '深海鱼优先' },
+      { id: 'egg', name: '蛋类', en: 'Eggs', min: 40, max: 50, unit: 'g', tip: '约一颗蛋,蛋黄不丢' },
+      { id: 'dairy', name: '奶及奶制品', en: 'Dairy', min: 300, max: 500, unit: 'ml/g', tip: '相当于 300ml 鲜奶' },
+      { id: 'soy', name: '大豆制品', en: 'Soy Products', min: 15, max: 25, unit: 'g 干重', tip: '豆腐 100g≈ 15g 大豆' },
+      { id: 'nut', name: '坚果', en: 'Nuts', min: 5, max: 10, unit: 'g', tip: '约一小把' }
+    ]
+  },
+  us: {
+    sourceLabel: 'Source: USDA · Dietary Guidelines for Americans (2020-2025) · Healthy U.S.-Style Pattern @ 2000 kcal',
+    sourceUrl: 'https://www.dietaryguidelines.gov',
+    groups: [
+      { id: 'vegetables', name: '蔬菜', en: 'Vegetables', min: 280, max: 350, unit: 'g', tip: '2.5 cup-eq · 含深色绿叶/红橙类' },
+      { id: 'fruits', name: '水果', en: 'Fruits', min: 200, max: 280, unit: 'g', tip: '2 cup-eq · 整果优先' },
+      { id: 'grains-whole', name: '全谷物', en: 'Whole Grains', min: 80, max: 110, unit: 'g 干重', tip: '≥3 oz-eq · 至少占总谷物一半' },
+      { id: 'grains-refined', name: '精制谷物', en: 'Refined Grains', min: 0, max: 110, unit: 'g 干重', tip: '≤3 oz-eq · 越少越好' },
+      { id: 'dairy', name: '乳制品', en: 'Dairy', min: 600, max: 720, unit: 'ml/g', tip: '3 cup-eq · 低脂或脱脂' },
+      { id: 'protein-meat', name: '禽肉/红肉', en: 'Meat & Poultry', min: 70, max: 110, unit: 'g', tip: '瘦肉为主' },
+      { id: 'protein-seafood', name: '海产/鱼', en: 'Seafood', min: 30, max: 40, unit: 'g/天', tip: '约 8 oz/周 · 多吃富脂海鱼' },
+      { id: 'protein-egg', name: '蛋类', en: 'Eggs', min: 30, max: 50, unit: 'g', tip: '与肉类合计算入 5.5 oz-eq' },
+      { id: 'protein-soy', name: '大豆/豆制品', en: 'Soy & Beans', min: 20, max: 60, unit: 'g 干重', tip: '推荐每周 1.5 cup-eq' },
+      { id: 'protein-nut', name: '坚果种子', en: 'Nuts & Seeds', min: 10, max: 30, unit: 'g', tip: '约 4 oz-eq/周' },
+      { id: 'oils', name: '烹调油', en: 'Oils', min: 20, max: 27, unit: 'g', tip: '27 g · 优选不饱和' }
+    ]
+  }
+};
+
+// ====================================================================
+// State
+// ====================================================================
+const state = {
+  mode: 'train',
+  tdee: 2635,
+  deficit: 15,
+  ratio: { c: 50, p: 30, f: 20 },
+  filter: 'all',
+  search: '',
+  cuisine: 'yue',
+  subRegion: null,
+  guide: 'cn',
+  currentMenu: null,
+  // 新增
+  menuDate: new Date().toISOString().slice(0,10),
+  refreshSeed: 0,    // 同一天点"换一份"时增加
+  activeTab: 'auto', // auto / custom-ing / custom-dish
+  poolFilter: 'all',
+  poolSearch: '',
+  selectedMeal: 'breakfast',  // 当前操作哪一餐
+  customSelections: { breakfast: [], lunch: [], dinner: [] }, // 模式B: {ing, grams}
+  customDishes: { breakfast: [], lunch: [], dinner: [] },     // 模式C: {dishKey, items}
+  presetFilter: 'all'
+};
+const PRESETS = { train: { c:50,p:30,f:20 }, rest: { c:35,p:35,f:30 } };
+
+// ====================================================================
+// 种子化随机(同一天同一菜系生成相同菜单)
+// ====================================================================
+function hashCode(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) {
+    h = ((h << 5) - h) + s.charCodeAt(i);
+    h |= 0;
+  }
+  return Math.abs(h);
+}
+function seededRandom(seed) {
+  let s = seed % 2147483647;
+  if (s <= 0) s += 2147483646;
+  return function() {
+    s = s * 16807 % 2147483647;
+    return (s - 1) / 2147483646;
+  };
+}
+let rngFn = Math.random;
+function buildSeed() {
+  const key = `${state.menuDate}-${state.cuisine}-${state.subRegion||''}-${state.refreshSeed}`;
+  rngFn = seededRandom(hashCode(key) || 1);
+}
+function rng() { return rngFn(); }
+function rngPick(arr) { return arr[Math.floor(rng()*arr.length)]; }
+function rngPickN(arr, n) {
+  const s = [...arr].map(x => [rng(), x]).sort((a,b) => a[0]-b[0]).map(x => x[1]);
+  return s.slice(0, n);
+}
+
+// ====================================================================
+// Utils
+// ====================================================================
+const $ = id => document.getElementById(id);
+function todayStr() {
+  const d = new Date();
+  const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  return `${String(d.getDate()).padStart(2,'0')} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+function pick(arr) { return arr[Math.floor(Math.random()*arr.length)]; }
+function pickN(arr, n) {
+  const s = [...arr].sort(()=>Math.random()-0.5);
+  return s.slice(0, n);
+}
+
+// ====================================================================
+// 营养目标
+// ====================================================================
+function calcTargets() {
+  const intake = state.tdee * (1 - state.deficit/100);
+  const cKcal = intake * state.ratio.c / 100;
+  const pKcal = intake * state.ratio.p / 100;
+  const fKcal = intake * state.ratio.f / 100;
+  return { intake, cKcal, pKcal, fKcal, cG: cKcal/4, pG: pKcal/4, fG: fKcal/9 };
+}
+function renderTargets() {
+  const t = calcTargets();
+  $('totalCal').textContent = Math.round(t.intake);
+  $('carbG').textContent = Math.round(t.cG);
+  $('proteinG').textContent = Math.round(t.pG);
+  $('fatG').textContent = Math.round(t.fG);
+  $('carbKcal').textContent = `${Math.round(t.cKcal)} kcal`;
+  $('proteinKcal').textContent = `${Math.round(t.pKcal)} kcal`;
+  $('fatKcal').textContent = `${Math.round(t.fKcal)} kcal`;
+}
+function updateSliderFill(id, val) { $(id).style.setProperty('--p', val+'%'); }
+function renderRatio() {
+  $('carbVal').textContent = state.ratio.c+'%';
+  $('proteinVal').textContent = state.ratio.p+'%';
+  $('fatVal').textContent = state.ratio.f+'%';
+  $('carbRatio').value = state.ratio.c;
+  $('proteinRatio').value = state.ratio.p;
+  $('fatRatio').value = state.ratio.f;
+  updateSliderFill('carbRatio', state.ratio.c);
+  updateSliderFill('proteinRatio', state.ratio.p);
+  updateSliderFill('fatRatio', state.ratio.f);
+  const total = state.ratio.c+state.ratio.p+state.ratio.f;
+  $('ratioWarn').classList.toggle('show', total !== 100);
+  if (total !== 100) $('ratioWarn').textContent = `当前合计 ${total}% · 需调整为 100%`;
+}
+function applyMode(m) {
+  state.mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode===m));
+  const sliders = ['carbRatio','proteinRatio','fatRatio'];
+  if (m === 'custom') {
+    sliders.forEach(s => $(s).disabled = false);
+    $('ratioLockStatus').textContent = 'CUSTOM · UNLOCKED';
+  } else {
+    sliders.forEach(s => $(s).disabled = true);
+    state.ratio = { ...PRESETS[m] };
+    $('ratioLockStatus').textContent = m==='train' ? 'TRAIN PRESET · 50/30/20' : 'REST PRESET · 35/35/30';
+  }
+  renderRatio();
+  renderTargets();
+}
+
+// ====================================================================
+// 菜系渲染
+// ====================================================================
+function renderCuisineGrid() {
+  $('cuisineGrid').innerHTML = cuisines.map((c,i) => `
+    <div class="cuisine-card ${c.id===state.cuisine?'active':''}" data-cuisine="${c.id}">
+      <div class="cuisine-card-num">No.${String(i+1).padStart(2,'0')}</div>
+      <div class="cuisine-card-name">${c.name}</div>
+      <div class="cuisine-card-en">${c.en}</div>
+      <div class="cuisine-card-key">${c.tags.slice(0,3).join(' · ')}</div>
+    </div>
+  `).join('');
+  document.querySelectorAll('.cuisine-card').forEach(card => {
+    card.addEventListener('click', () => {
+      state.cuisine = card.dataset.cuisine;
+      state.subRegion = null;
+      renderCuisineGrid();
+      renderCuisineDetails();
+      renderSubRegions();
+      renderIngredients();
+      // 刷新当前激活视图
+      if (state.activeTab) refreshActiveView();
+    });
+  });
+}
+
+function renderCuisineDetails() {
+  const c = cuisines.find(x => x.id===state.cuisine);
+  $('cuisineNameEn').textContent = c.en;
+  $('cuisineNameZh').textContent = c.name;
+  $('cuisineDesc').textContent = c.desc;
+  $('cuisineTags').innerHTML = c.tags.map(t => `<span class="cuisine-tag">${t}</span>`).join('');
+}
+
+function renderSubRegions() {
+  const c = cuisines.find(x => x.id===state.cuisine);
+  const row = $('subRegionRow');
+  row.innerHTML = '<span class="sub-region-label">子地区 / Sub-Region</span>' +
+    `<button class="sub-region-pill ${!state.subRegion?'active':''}" data-sub="">全部 <span class="en">All</span></button>` +
+    c.subRegions.map(s => `
+      <button class="sub-region-pill ${state.subRegion===s.id?'active':''}" data-sub="${s.id}">
+        ${s.name}<span class="en">${s.en}</span>
+      </button>
+    `).join('');
+  row.querySelectorAll('.sub-region-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      state.subRegion = p.dataset.sub || null;
+      renderSubRegions();
+      if (state.activeTab) refreshActiveView();
+    });
+  });
+}
+
+// ====================================================================
+// 食材渲染(地区置顶)
+// ====================================================================
+function tagText(cat, isFruit) {
+  if (isFruit) return '水果·CARB';
+  return { carb: '碳水·CARB', protein: '蛋白·PROTEIN', fat: '脂肪·FAT', veg: '蔬菜·VEG' }[cat];
+}
+
+function guideRecText(ing) {
+  const guide = guidelines[state.guide];
+  const groupId = state.guide === 'cn' ? ing.cnGroup : ing.usGroup;
+  const group = guide.groups.find(g => g.id === groupId);
+  if (!group) return '';
+  return `指南推荐 ${group.min}-${group.max} ${group.unit}/天`;
+}
+
+function renderIngredients() {
+  const grid = $('ingGrid');
+  const q = state.search.toLowerCase();
+  let filtered = ingredients.filter(ing => {
+    if (state.filter !== 'all' && ing.cat !== state.filter) return false;
+    if (q && !ing.name.toLowerCase().includes(q) && !ing.en.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  // 当地常用置顶
+  const cuisine = state.cuisine;
+  filtered.sort((a, b) => {
+    const aFeat = a.regions.includes(cuisine);
+    const bFeat = b.regions.includes(cuisine);
+    if (aFeat && !bFeat) return -1;
+    if (!aFeat && bFeat) return 1;
+    return 0;
+  });
+
+  grid.innerHTML = filtered.map(ing => {
+    const featured = ing.regions.includes(cuisine);
+    return `
+      <article class="ing-card ${featured?'featured':''}">
+        <span class="ing-tag ${ing.cat}">${tagText(ing.cat, ing.isFruit)}</span>
+        <div class="ing-name">${ing.name}</div>
+        <div class="ing-name-en">${ing.en}</div>
+        <div class="ing-stats">
+          <div class="ing-stat"><span class="ing-stat-label">Cal</span><span class="ing-stat-val cal">${ing.kcal}</span></div>
+          <div class="ing-stat"><span class="ing-stat-label">Carb</span><span class="ing-stat-val c">${ing.c}g</span></div>
+          <div class="ing-stat"><span class="ing-stat-label">Pro</span><span class="ing-stat-val p">${ing.p}g</span></div>
+          <div class="ing-stat"><span class="ing-stat-label">Fat</span><span class="ing-stat-val f">${ing.f}g</span></div>
+        </div>
+        <div class="ing-portion">${ing.portion}</div>
+        <span class="ing-guide-tag">${guideRecText(ing)}</span>
+      </article>
+    `;
+  }).join('');
+
+  $('cntAll').textContent = ingredients.length;
+  $('cntCarb').textContent = ingredients.filter(i=>i.cat==='carb').length;
+  $('cntProtein').textContent = ingredients.filter(i=>i.cat==='protein').length;
+  $('cntFat').textContent = ingredients.filter(i=>i.cat==='fat').length;
+  $('cntVeg').textContent = ingredients.filter(i=>i.cat==='veg').length;
+}
+
+// ====================================================================
+// 菜单生成器:按地区菜系挑食材 + 套做法 -> 菜名
+// ====================================================================
+function calcItem(ing, grams) {
+  return {
+    ing, grams: Math.round(grams),
+    kcal: ing.kcal*grams/100, c: ing.c*grams/100, p: ing.p*grams/100, f: ing.f*grams/100
+  };
+}
+
+function getCuisineMethods() {
+  const c = cuisines.find(x => x.id===state.cuisine);
+  if (state.subRegion) {
+    const sub = c.subRegions.find(s => s.id===state.subRegion);
+    return sub ? sub.methods : c.methods;
+  }
+  return c.methods;
+}
+
+function regionFilter(arr) {
+  // 优先返回当地常用,不足则补全
+  const local = arr.filter(i => i.regions.includes(state.cuisine));
+  return local.length >= 3 ? local : arr;
+}
+
+function pickMethodFor(category, methods) {
+  // 不同食材类别匹配的做法集合
+  // 蔬菜:清炒/白灼/凉拌/水煮... 蛋白:清蒸/白灼/水煮/红烧...
+  // methods 是当前菜系/子地区的可用集合,返回其中合理的一个
+  const vegOk = ['清炒','白灼','凉拌','清蒸','上汤','水煮','蒜蓉蒸','酸辣','糟溜','清汤','咸鲜','酸菜煮','烫'];
+  const proteinOk = ['清蒸','白灼','水煮','清炖','清汤','滚汤','上汤','凉拌','酱','卤水','卤煮','盐水煮','白切','白煮','宫保','鱼香','麻婆','麻辣','干煸','剁椒蒸','小炒','酸辣汤','锅烹','咸鲜','蒜蓉蒸','咸香','西湖醋','酸辣','焖煮','酿造','糟溜','爆炒'];
+  const carbOk = ['清蒸','白煮','凉拌'];
+
+  let pool = methods.filter(m => {
+    if (category === 'veg') return vegOk.includes(m);
+    if (category === 'protein') return proteinOk.includes(m);
+    if (category === 'carb') return carbOk.includes(m);
+    return true;
+  });
+  if (!pool.length) pool = methods;
+  return pick(pool);
+}
+
+function generateMenu() {
+  buildSeed();  // 同日同菜系同一份
+  const t = calcTargets();
+  const splits = [
+    { name: '早餐', en: 'Breakfast', tag: 'AM 07:30', share: 0.25 },
+    { name: '午餐', en: 'Luncheon', tag: 'PM 12:30', share: 0.40 },
+    { name: '晚餐', en: 'Supper', tag: 'PM 18:30', share: 0.35 }
+  ];
+  const methods = getCuisineMethods();
+
+  const allCarbs = ingredients.filter(i => i.cat==='carb' && !i.isFruit);
+  const allFruits = ingredients.filter(i => i.isFruit);
+  const allProteins = ingredients.filter(i => i.cat==='protein');
+  const allVegs = ingredients.filter(i => i.cat==='veg');
+  const allFats = ingredients.filter(i => i.cat==='fat');
+
+  const bfCarbNames = ['燕麦','红薯','紫薯','全麦面包','玉米','小米','全麦馒头'];
+  const bfProteinNames = ['鸡蛋','蛋白','纯牛奶','脱脂牛奶','无糖希腊酸奶','无糖豆浆','鲜虾'];
+  const mainCarbNames = ['糙米饭','白米饭','藜麦','意面','粿条','河粉','刀削面','荞麦面','红薯','紫薯','土豆','玉米','山药','全麦馒头'];
+
+  const meals = [];
+  const usedNames = new Set();
+
+  splits.forEach((meal, idx) => {
+    const targetC = t.cG * meal.share;
+    const targetP = t.pG * meal.share;
+    const targetF = t.fG * meal.share;
+
+    const dishes = [];
+    const allItems = [];
+
+    if (idx === 0) {
+      const carbPool = regionFilter(allCarbs.filter(i => bfCarbNames.includes(i.name) && !usedNames.has(i.name)));
+      const carb = rngPick(carbPool) || rngPick(regionFilter(allCarbs));
+      const carbGrams = carb.name==='燕麦' ? 50 : (carb.name==='全麦面包' ? 70 : (carb.name==='全麦馒头' ? 100 : 130));
+      const carbItem = calcItem(carb, carbGrams);
+      usedNames.add(carb.name);
+
+      const mainProPool = regionFilter(allProteins.filter(i => bfProteinNames.includes(i.name) && !usedNames.has(i.name)));
+      const dairyOpt = mainProPool.find(p => ['纯牛奶','脱脂牛奶','无糖豆浆','无糖希腊酸奶'].includes(p.name));
+      let dairyItem = null;
+      if (dairyOpt && (carb.name==='燕麦' || carb.name==='全麦面包' || carb.name==='全麦馒头' || carb.name==='玉米')) {
+        const g = (dairyOpt.name==='纯牛奶'||dairyOpt.name==='脱脂牛奶'||dairyOpt.name==='无糖豆浆') ? 250 : 150;
+        dairyItem = calcItem(dairyOpt, g);
+        usedNames.add(dairyOpt.name);
+      }
+
+      dishes.push({
+        name: dairyItem ? `${carb.name}配${dairyItem.ing.name}` : `${carb.name}早餐碗`,
+        method: '清淡早餐',
+        methodKey: '__breakfast_bowl__',
+        items: dairyItem ? [carbItem, dairyItem] : [carbItem]
+      });
+      allItems.push(carbItem);
+      if (dairyItem) allItems.push(dairyItem);
+
+      const eggOpt = mainProPool.find(p => !usedNames.has(p.name) && (p.name==='鸡蛋' || p.name==='蛋白' || p.name==='鲜虾'));
+      if (eggOpt) {
+        const g = eggOpt.name==='鸡蛋' ? 100 : (eggOpt.name==='蛋白' ? 100 : 90);
+        const proItem = calcItem(eggOpt, g);
+        const methodKey = pickMethodFor('protein', methods);
+        const tmpl = cookingMethods[methodKey];
+        dishes.push({
+          name: tmpl.name.replace('{ing}', eggOpt.name),
+          method: tmpl.tag,
+          methodKey,
+          mainIng: eggOpt.name,
+          items: [proItem]
+        });
+        allItems.push(proItem);
+        usedNames.add(eggOpt.name);
+      }
+
+      if (rng() < 0.4) {
+        const fruit = rngPick(regionFilter(allFruits.filter(f => !usedNames.has(f.name))));
+        if (fruit) {
+          const fItem = calcItem(fruit, 100);
+          dishes.push({
+            name: `时令水果·${fruit.name}`,
+            method: '生食·原味',
+            methodKey: '__raw_fruit__',
+            items: [fItem]
+          });
+          allItems.push(fItem);
+          usedNames.add(fruit.name);
+        }
+      }
+
+    } else {
+      const carbPool = regionFilter(allCarbs.filter(i => mainCarbNames.includes(i.name) && !usedNames.has(i.name)));
+      const carb = rngPick(carbPool) || rngPick(regionFilter(allCarbs));
+      const carbGrams = (carb.name.includes('红薯')||carb.name.includes('紫薯')||carb.name.includes('土豆')||carb.name.includes('山药')) ? 130
+                      : carb.name==='玉米' ? 200
+                      : (carb.name.includes('面')||carb.name==='粿条'||carb.name==='河粉') ? 150
+                      : 130;
+      const carbItem = calcItem(carb, carbGrams);
+      dishes.push({
+        name: carb.name,
+        method: ['糙米饭','白米饭','藜麦'].includes(carb.name) ? '主食·原味' : '主食',
+        methodKey: '__staple__',
+        mainIng: carb.name,
+        items: [carbItem]
+      });
+      allItems.push(carbItem);
+      usedNames.add(carb.name);
+
+      const numPro = idx===1 ? 2 : (rng()<0.6 ? 2 : 1);
+      const proPool = regionFilter(allProteins.filter(i =>
+        !usedNames.has(i.name) && !['纯牛奶','脱脂牛奶','无糖豆浆','无糖希腊酸奶','低脂奶酪','蛋白'].includes(i.name)
+      ));
+      const proteins = rngPickN(proPool.length>=numPro ? proPool : allProteins.filter(i => !usedNames.has(i.name)), numPro);
+      proteins.forEach((p, i) => {
+        let g = i===0 ? 110 : 90;
+        if (p.name.includes('豆腐')) g = 150;
+        if (p.name === '豆干') g = 80;
+        if (p.name === '鸡蛋') g = 100;
+        const proItem = calcItem(p, g);
+        const methodKey = pickMethodFor('protein', methods);
+        const tmpl = cookingMethods[methodKey];
+        dishes.push({
+          name: tmpl.name.replace('{ing}', p.name),
+          method: tmpl.tag,
+          methodKey,
+          mainIng: p.name,
+          items: [proItem]
+        });
+        allItems.push(proItem);
+        usedNames.add(p.name);
+      });
+
+      const vegPool = regionFilter(allVegs.filter(i => !usedNames.has(i.name)));
+      const numVeg = 2;
+      const vegs = rngPickN(vegPool.length>=numVeg ? vegPool : allVegs, numVeg);
+      vegs.forEach((v, i) => {
+        const g = i===0 ? 200 : 150;
+        const vItem = calcItem(v, g);
+        const methodKey = pickMethodFor('veg', methods);
+        const tmpl = cookingMethods[methodKey];
+        dishes.push({
+          name: tmpl.name.replace('{ing}', v.name),
+          method: tmpl.tag,
+          methodKey,
+          mainIng: v.name,
+          items: [vItem]
+        });
+        allItems.push(vItem);
+        usedNames.add(v.name);
+      });
+    }
+
+    const subtotal = allItems.reduce((a,x)=>({c:a.c+x.c,p:a.p+x.p,f:a.f+x.f,kcal:a.kcal+x.kcal}),{c:0,p:0,f:0,kcal:0});
+    const carbItem = allItems.find(it => it.ing.cat==='carb' && !it.ing.isFruit);
+    if (carbItem) {
+      const diff = targetC - subtotal.c;
+      if (Math.abs(diff) > 8 && carbItem.ing.c > 0) {
+        const adjustG = (diff/carbItem.ing.c)*100;
+        const newG = Math.max(30, Math.min(250, carbItem.grams+adjustG));
+        const factor = newG/carbItem.grams;
+        carbItem.grams = Math.round(newG);
+        carbItem.kcal *= factor; carbItem.c *= factor; carbItem.p *= factor; carbItem.f *= factor;
+      }
+    }
+    const sub2 = allItems.reduce((a,x)=>({c:a.c+x.c,p:a.p+x.p,f:a.f+x.f,kcal:a.kcal+x.kcal}),{c:0,p:0,f:0,kcal:0});
+    const proItem = allItems.find(it => it.ing.cat==='protein' && it.ing.p>10);
+    if (proItem) {
+      const diff = targetP - sub2.p;
+      if (Math.abs(diff) > 6 && proItem.ing.p > 0) {
+        const adjustG = (diff/proItem.ing.p)*100;
+        const newG = Math.max(50, Math.min(200, proItem.grams+adjustG));
+        const factor = newG/proItem.grams;
+        proItem.grams = Math.round(newG);
+        proItem.kcal *= factor; proItem.c *= factor; proItem.p *= factor; proItem.f *= factor;
+      }
+    }
+    const sub3 = allItems.reduce((a,x)=>({c:a.c+x.c,p:a.p+x.p,f:a.f+x.f,kcal:a.kcal+x.kcal}),{c:0,p:0,f:0,kcal:0});
+    if (sub3.f < targetF*0.7 && idx===1) {
+      const fatPool = allFats.filter(i => !usedNames.has(i.name));
+      const fatItem = rngPick(regionFilter(fatPool));
+      if (fatItem) {
+        const need = targetF - sub3.f;
+        const grams = Math.max(5, Math.min(25, (need/fatItem.f)*100));
+        const fI = calcItem(fatItem, grams);
+        dishes.push({
+          name: `${fatItem.name}小食`,
+          method: '加餐·健康脂肪',
+          methodKey: '__snack_fat__',
+          mainIng: fatItem.name,
+          items: [fI]
+        });
+        allItems.push(fI);
+        usedNames.add(fatItem.name);
+      }
+    }
+
+    const total = allItems.reduce((a,x)=>({kcal:a.kcal+x.kcal,c:a.c+x.c,p:a.p+x.p,f:a.f+x.f}),{kcal:0,c:0,p:0,f:0});
+    meals.push({ ...meal, dishes, total, allItems });
+  });
+
+  state.currentMenu = meals;
+  return meals;
+}
+
+function renderMenu(meals) {
+  const grid = $('menuGrid');
+  grid.innerHTML = meals.map((meal, mi) => `
+    <article class="meal-card">
+      <header class="meal-header">
+        <span class="meal-tag">${meal.tag}</span>
+        <div class="meal-name">${meal.en}</div>
+        <div class="meal-name-zh">${meal.name}</div>
+      </header>
+      <div class="meal-body">
+        ${meal.dishes.map((dish, di) => `
+          <div class="dish-block">
+            <div class="dish-name">
+              <span class="dish-name-text" data-mi="${mi}" data-di="${di}">${dish.name}</span>
+              <span class="dish-method-tag">${dish.method}</span>
+            </div>
+            <div class="dish-items">
+              ${dish.items.map(it => `
+                <div class="dish-item-line">
+                  <span class="dish-item-name">
+                    <span class="dish-dot ${it.ing.isFruit?'carb':it.ing.cat}"></span>${it.ing.name}
+                  </span>
+                  <span class="dish-qty">${it.grams}g</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <footer class="meal-footer">
+        <div class="meal-foot-cell"><span class="meal-foot-label">KCAL</span><span class="meal-foot-val">${Math.round(meal.total.kcal)}</span></div>
+        <div class="meal-foot-cell"><span class="meal-foot-label">C</span><span class="meal-foot-val">${Math.round(meal.total.c)}g</span></div>
+        <div class="meal-foot-cell"><span class="meal-foot-label">P</span><span class="meal-foot-val">${Math.round(meal.total.p)}g</span></div>
+        <div class="meal-foot-cell"><span class="meal-foot-label">F</span><span class="meal-foot-val">${Math.round(meal.total.f)}g</span></div>
+      </footer>
+    </article>
+  `).join('');
+  // 绑定菜名点击
+  grid.querySelectorAll('.dish-name-text').forEach(el => {
+    el.addEventListener('click', () => {
+      const dish = meals[+el.dataset.mi].dishes[+el.dataset.di];
+      openCookModal(dish);
+    });
+  });
+  renderTotalBar(meals);
+  renderGuideCheck();
+}
+
+function renderTotalBar(meals) {
+  const tot = meals.reduce((a,m)=>({
+    kcal:a.kcal+m.total.kcal, c:a.c+m.total.c, p:a.p+m.total.p, f:a.f+m.total.f
+  }),{kcal:0,c:0,p:0,f:0});
+  const target = calcTargets();
+  function pctText(actual, tgt) {
+    const pct = actual/tgt*100;
+    const diff = pct - 100;
+    if (Math.abs(diff) <= 8) return { text: `达标 · ${pct.toFixed(0)}%`, cls: 'good' };
+    if (diff > 8) return { text: `超出 +${diff.toFixed(0)}%`, cls: 'over' };
+    return { text: `不足 ${diff.toFixed(0)}%`, cls: 'warn' };
+  }
+  const calP = pctText(tot.kcal, target.intake);
+  const cP = pctText(tot.c, target.cG);
+  const pP = pctText(tot.p, target.pG);
+  const fP = pctText(tot.f, target.fG);
+  $('totalBar').innerHTML = `
+    <div class="total-title">
+      <div class="total-title-en"><em>Daily Sum</em></div>
+      <div class="total-title-zh">全日合计 / 对照目标</div>
+    </div>
+    <div class="total-cell">
+      <div class="total-cell-label">总热量</div>
+      <div class="total-cell-val">${Math.round(tot.kcal)}</div>
+      <div class="total-cell-pct ${calP.cls}">${calP.text} · 目标 ${Math.round(target.intake)}</div>
+    </div>
+    <div class="total-cell">
+      <div class="total-cell-label">⬤ 碳水</div>
+      <div class="total-cell-val carb">${Math.round(tot.c)}g</div>
+      <div class="total-cell-pct ${cP.cls}">${cP.text} · 目标 ${Math.round(target.cG)}g</div>
+    </div>
+    <div class="total-cell">
+      <div class="total-cell-label">⬤ 蛋白</div>
+      <div class="total-cell-val protein">${Math.round(tot.p)}g</div>
+      <div class="total-cell-pct ${pP.cls}">${pP.text} · 目标 ${Math.round(target.pG)}g</div>
+    </div>
+    <div class="total-cell">
+      <div class="total-cell-label">⬤ 脂肪</div>
+      <div class="total-cell-val fat">${Math.round(tot.f)}g</div>
+      <div class="total-cell-pct ${fP.cls}">${fP.text} · 目标 ${Math.round(target.fG)}g</div>
+    </div>
+  `;
+}
+
+// ====================================================================
+// 膳食指南检查
+// ====================================================================
+function renderGuideToggle() {
+  document.querySelectorAll('.guide-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.guide===state.guide);
+  });
+  const g = guidelines[state.guide];
+  $('guideSource').innerHTML = `${g.sourceLabel} · <a href="${g.sourceUrl}" target="_blank">查看原文 →</a>`;
+}
+
+function aggregateByGroup(meals, guideId) {
+  const totals = {};
+  meals.forEach(m => {
+    m.allItems.forEach(it => {
+      const groupId = guideId === 'cn' ? it.ing.cnGroup : it.ing.usGroup;
+      if (!groupId) return;
+      // 大豆制品需要转换为干豆当量(豆腐 100g≈ 15g 大豆)
+      let amount = it.grams;
+      if (guideId === 'cn' && groupId === 'soy') {
+        if (it.ing.name.includes('豆腐')) amount = it.grams * 0.15;
+        else if (it.ing.name === '豆干') amount = it.grams * 0.4;
+        else if (it.ing.name === '无糖豆浆') amount = it.grams * 0.04;
+      }
+      // 全谷物干重换算(燕麦本身就是干重,糙米/小米按熟重 -> 干重 = 熟重/2.5)
+      if (guideId === 'cn' && groupId === 'grain-whole') {
+        if (['糙米饭','小米','藜麦','荞麦面','刀削面','意面'].includes(it.ing.name)) amount = it.grams / 2.5;
+      }
+      if (guideId === 'cn' && groupId === 'grain-refined') {
+        if (['白米饭','粿条','河粉','刀削面'].includes(it.ing.name)) amount = it.grams / 2.5;
+      }
+      // 美国指南谷物干重换算
+      if (guideId === 'us' && (groupId === 'grains-whole' || groupId === 'grains-refined')) {
+        if (['糙米饭','白米饭','小米','藜麦','荞麦面','刀削面','意面','粿条','河粉'].includes(it.ing.name)) amount = it.grams / 2.5;
+      }
+      // 美国指南豆制品干重换算
+      if (guideId === 'us' && groupId === 'protein-soy') {
+        if (it.ing.name.includes('豆腐')) amount = it.grams * 0.15;
+        else if (it.ing.name === '豆干') amount = it.grams * 0.4;
+        else if (it.ing.name === '无糖豆浆') amount = it.grams * 0.04;
+      }
+      totals[groupId] = (totals[groupId] || 0) + amount;
+    });
+  });
+  return totals;
+}
+
+function renderGuideCheck() {
+  if (!state.currentMenu) return;
+  const guide = guidelines[state.guide];
+  const totals = aggregateByGroup(state.currentMenu, state.guide);
+
+  const rows = guide.groups.map(g => {
+    const actual = totals[g.id] || 0;
+    let status, statusCls, badgeText;
+    if (g.min === 0 && g.max > 0) {
+      // upper-bound only(精制谷物)
+      if (actual <= g.max) { status = 'good'; statusCls = 'good'; badgeText = '✓ 合规'; }
+      else { status = 'over'; statusCls = 'over'; badgeText = '⚠ 超量'; }
+    } else if (actual < g.min) {
+      status = 'under'; statusCls = 'under'; badgeText = '⌣ 不足';
+    } else if (actual <= g.max) {
+      status = 'good'; statusCls = 'good'; badgeText = '✓ 达标';
+    } else {
+      status = 'over'; statusCls = 'over'; badgeText = '⚠ 超量';
+    }
+    const fillPct = Math.min(100, (actual / g.max) * 100);
+    return `
+      <div class="guide-row">
+        <div class="guide-row-info">
+          <div class="guide-group-name">${g.name}</div>
+          <div class="guide-group-en">${g.en}</div>
+          <div class="guide-group-rec">推荐 ${g.min}-${g.max} ${g.unit} · ${g.tip}</div>
+        </div>
+        <div class="guide-status">
+          <div class="guide-status-val">${actual.toFixed(0)}<span style="font-size:14px;font-style:italic;color:var(--ink-mute);"> ${g.unit.split(' ')[0]}</span></div>
+          <div class="guide-status-target">目标 ${g.min}-${g.max}</div>
+          <div class="guide-status-bar">
+            <div class="guide-status-fill ${status}" style="width:${fillPct}%"></div>
+          </div>
+          <span class="guide-badge ${statusCls}">${badgeText}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+  $('guideGrid').innerHTML = rows;
+
+  // Summary 计分
+  let goodCount = 0, total = guide.groups.length;
+  guide.groups.forEach(g => {
+    const a = totals[g.id] || 0;
+    if (g.min === 0 && a <= g.max) goodCount++;
+    else if (a >= g.min && a <= g.max) goodCount++;
+  });
+  const score = Math.round(goodCount / total * 100);
+
+  let summaryText = '';
+  if (score >= 80) {
+    summaryText = `<strong>当日菜单与${state.guide==='cn'?'中国居民膳食指南':'美国膳食指南'}高度契合</strong>。多数食物组都落在推荐区间,搭配均衡。`;
+  } else if (score >= 60) {
+    summaryText = `当日菜单<strong>大部分食物组达标</strong>,少数未达标项见下方红/灰色徽章。可在下一餐针对性补足或调整。`;
+  } else {
+    summaryText = `当日菜单<strong>多个食物组偏离推荐</strong>。建议关注不足项(尤其是奶类、深色蔬菜、全谷物),或减少超量项。`;
+  }
+
+  $('guideSummary').innerHTML = `
+    <div class="guide-summary-text">${summaryText}<br>
+      <span style="font-size:13px;font-style:normal;font-family:'JetBrains Mono',monospace;letter-spacing:0.05em;color:var(--ink-mute);">
+        ${goodCount} / ${total} 食物组达标 · ${state.guide==='cn'?'CNS 2022':'USDA 2020-2025'}
+      </span>
+    </div>
+    <div class="guide-score">
+      <div class="guide-score-val">${score}</div>
+      <div class="guide-score-label">Compliance Score</div>
+    </div>
+  `;
+}
+
+// ====================================================================
+// Modal: 烹饪卡片
+// ====================================================================
+function openCookModal(dish) {
+  const modal = $('cookModal');
+  const tmpl = cookingMethods[dish.methodKey];
+
+  // 计算这道菜的总营养
+  const total = dish.items.reduce((a, x) => ({
+    kcal: a.kcal + x.kcal, c: a.c + x.c, p: a.p + x.p, f: a.f + x.f
+  }), { kcal: 0, c: 0, p: 0, f: 0 });
+
+  $('modalTag').textContent = (tmpl ? tmpl.tag : dish.method) + ' · ' + cuisines.find(c=>c.id===state.cuisine).name;
+  $('modalName').textContent = dish.name;
+  // 英文名:把主料英文 + 做法
+  const mainIng = dish.items[0].ing;
+  $('modalNameEn').textContent = mainIng.en + (tmpl && tmpl.tag.includes('清蒸') ? ' · Steamed' : '');
+
+  // Meta
+  const timeMin = tmpl?.timeMin || 10;
+  $('modalMeta').innerHTML = `
+    <div class="modal-meta-item">
+      <span class="modal-meta-label">耗时 / Time</span>
+      <span class="modal-meta-val">~${timeMin} min</span>
+    </div>
+    <div class="modal-meta-item">
+      <span class="modal-meta-label">总热量 / Calories</span>
+      <span class="modal-meta-val">${Math.round(total.kcal)} kcal</span>
+    </div>
+    <div class="modal-meta-item">
+      <span class="modal-meta-label">蛋白 / Protein</span>
+      <span class="modal-meta-val">${total.p.toFixed(1)} g</span>
+    </div>
+    <div class="modal-meta-item">
+      <span class="modal-meta-label">碳水 / Carb</span>
+      <span class="modal-meta-val">${total.c.toFixed(1)} g</span>
+    </div>
+    <div class="modal-meta-item">
+      <span class="modal-meta-label">脂肪 / Fat</span>
+      <span class="modal-meta-val">${total.f.toFixed(1)} g</span>
+    </div>
+  `;
+
+  // Body: 原料 + 步骤 + Tips
+  let body = '';
+
+  // 原料
+  body += `
+    <div class="modal-section">
+      <div class="modal-section-title">Ingredients <span class="zh">原料</span></div>
+      <div class="ingredient-list">
+        ${dish.items.map(it => `
+          <div class="ingredient-list-item">
+            <span class="il-name">${it.ing.name}</span>
+            <span class="il-qty">${it.grams}g</span>
+          </div>
+        `).join('')}
+        ${tmpl && tmpl.needsAux ? tmpl.needsAux.map(a => `
+          <div class="ingredient-list-item">
+            <span class="il-name" style="opacity:0.7;">${a}</span>
+            <span class="il-qty" style="opacity:0.6;">辅料</span>
+          </div>
+        `).join('') : ''}
+      </div>
+    </div>
+  `;
+
+  // 步骤
+  if (tmpl && tmpl.steps) {
+    const ingName = dish.mainIng || dish.items[0].ing.name;
+    body += `
+      <div class="modal-section">
+        <div class="modal-section-title">Method <span class="zh">做法步骤</span></div>
+        <ol class="steps-list">
+          ${tmpl.steps.map(s => `
+            <li class="step-item">
+              <span class="step-num"></span>
+              <span class="step-text">${s.replace(/\{ing\}/g, ingName)}</span>
+            </li>
+          `).join('')}
+        </ol>
+      </div>
+    `;
+  } else {
+    // 备用步骤(主食/水果/坚果等)
+    let fallbackSteps = [];
+    if (dish.methodKey === '__staple__') {
+      const c = dish.items[0].ing.name;
+      if (c.includes('饭')) fallbackSteps = [`${c}按 1:1.2 米水比电饭煲蒸熟`,`一份约 130g 装碗即食`];
+      else if (c.includes('红薯')||c.includes('紫薯')||c.includes('土豆')||c.includes('山药')) fallbackSteps = [`${c}洗净不去皮`,`水开后蒸 20-25 分钟,筷子能轻松插入即可`,`晾凉去皮(可选)`];
+      else if (c==='玉米') fallbackSteps = [`玉米剥去外层老叶留嫩叶`,`水开后大火蒸 12-15 分钟`,`整根装盘`];
+      else if (c.includes('面')||c==='粿条'||c==='河粉') fallbackSteps = [`水煮沸下面`,`煮至软硬适中(2-3分钟)`,`捞出过冷水后沥干装碗`];
+      else fallbackSteps = [`${c}按包装说明烹饪`,`一份适量装盘`];
+    } else if (dish.methodKey === '__breakfast_bowl__') {
+      const c = dish.items[0].ing.name;
+      const dairy = dish.items[1]?.ing.name;
+      if (c==='燕麦' && dairy) fallbackSteps = [`燕麦 50g 加 ${dairy} 250ml`,`微波炉加热 2 分钟,或小锅小火煮 5 分钟搅拌至浓稠`,`可加少量蓝莓/坚果点缀(已计入营养)`];
+      else if (dairy) fallbackSteps = [`${c}加热即食`,`配 ${dairy} 一杯,搭配食用`];
+      else fallbackSteps = [`${c}按常规方式烹饪`,`一份装盘`];
+    } else if (dish.methodKey === '__raw_fruit__') {
+      fallbackSteps = [`${dish.items[0].ing.name}洗净`,`整颗或切块即食`,`餐后或加餐时段食用最佳`];
+    } else if (dish.methodKey === '__snack_fat__') {
+      fallbackSteps = [`${dish.items[0].ing.name}称量约 ${dish.items[0].grams}g`,`作为加餐或餐后食用`,`不建议超过日推荐量(坚果约一小把)`];
+    }
+    body += `
+      <div class="modal-section">
+        <div class="modal-section-title">Method <span class="zh">做法步骤</span></div>
+        <ol class="steps-list">
+          ${fallbackSteps.map(s => `
+            <li class="step-item">
+              <span class="step-num"></span>
+              <span class="step-text">${s}</span>
+            </li>
+          `).join('')}
+        </ol>
+      </div>
+    `;
+  }
+
+  // Tip
+  if (tmpl && tmpl.tip) {
+    body += `
+      <div class="modal-section">
+        <div class="modal-section-title">Cut Tip <span class="zh">减脂要点</span></div>
+        <div class="tips-box">${tmpl.tip}</div>
+      </div>
+    `;
+  }
+
+  $('modalBody').innerHTML = body;
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCookModal() {
+  $('cookModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+// ====================================================================
+// 模式 B: 按食材自定义
+// ====================================================================
+function renderPool() {
+  const list = $('poolList');
+  const q = state.poolSearch.toLowerCase();
+  let filtered = ingredients.filter(ing => {
+    if (state.poolFilter !== 'all' && ing.cat !== state.poolFilter) return false;
+    if (q && !ing.name.toLowerCase().includes(q) && !ing.en.toLowerCase().includes(q)) return false;
+    return true;
+  });
+  // 当地常用置顶
+  filtered.sort((a, b) => {
+    const aF = a.regions.includes(state.cuisine);
+    const bF = b.regions.includes(state.cuisine);
+    if (aF && !bF) return -1;
+    if (!aF && bF) return 1;
+    return 0;
+  });
+
+  const meal = state.selectedMeal;
+  const usedNames = new Set(state.customSelections[meal].map(s => s.ing.name));
+
+  list.innerHTML = filtered.map(ing => `
+    <div class="ing-pool-item ${usedNames.has(ing.name)?'added':''}" data-ing="${ing.name}">
+      <span class="ing-pool-name">
+        <span class="ing-pool-dot ${ing.isFruit?'carb':ing.cat}"></span>
+        ${ing.name}
+      </span>
+      <span class="ing-pool-add">${usedNames.has(ing.name)?'✓':'+'}</span>
+    </div>
+  `).join('');
+  list.querySelectorAll('.ing-pool-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const name = item.dataset.ing;
+      const ing = ingredients.find(i => i.name === name);
+      const sel = state.customSelections[state.selectedMeal];
+      const idx = sel.findIndex(s => s.ing.name === name);
+      if (idx >= 0) sel.splice(idx, 1);
+      else {
+        // 默认份量
+        let g = 100;
+        if (ing.cat === 'protein' && ing.p > 10) g = 110;
+        else if (ing.cat === 'protein' && (ing.name.includes('奶')||ing.name.includes('豆浆'))) g = 250;
+        else if (ing.cat === 'veg') g = 200;
+        else if (ing.cat === 'fat') g = 15;
+        else if (ing.cat === 'carb' && ing.name === '燕麦') g = 50;
+        else if (ing.cat === 'carb' && (ing.name.includes('饭')||ing.name.includes('面')||ing.name.includes('粿条'))) g = 130;
+        else if (ing.isFruit) g = 100;
+        sel.push({ ing, grams: g });
+      }
+      renderPool();
+      renderSelected();
+      renderSuggestions();
+      renderCustomPreviewIng();
+    });
+  });
+}
+
+function renderSelected() {
+  const wrap = $('selectedItems');
+  const meals = ['breakfast','lunch','dinner'];
+  const labels = { breakfast: ['早餐','Breakfast'], lunch: ['午餐','Luncheon'], dinner: ['晚餐','Supper'] };
+  let html = '';
+  meals.forEach(m => {
+    const items = state.customSelections[m];
+    const isActive = m === state.selectedMeal;
+    html += `<div class="selected-meal-block">
+      <div class="selected-meal-title">
+        <span>${labels[m][0]} ${isActive ? '· 当前' : ''}</span>
+        <span class="meal-en">${labels[m][1]} · ${items.length} item${items.length!==1?'s':''}</span>
+      </div>`;
+    if (!items.length) {
+      html += `<div class="selected-meal-empty">从左侧食材池选择...</div>`;
+    } else {
+      html += items.map((s, i) => `
+        <div class="selected-item ${s.ing.isFruit?'carb':s.ing.cat}">
+          <span class="selected-item-name">${s.ing.name}</span>
+          <span class="selected-item-qty">
+            <input type="number" min="5" max="500" step="5" value="${s.grams}" data-meal="${m}" data-idx="${i}">
+            <span class="unit">g</span>
+          </span>
+          <button class="selected-item-remove" data-meal="${m}" data-idx="${i}">×</button>
+        </div>
+      `).join('');
+    }
+    html += `</div>`;
+  });
+  wrap.innerHTML = html || `<div class="selected-empty">点击左侧食材添加,在此查看已选项</div>`;
+
+  wrap.querySelectorAll('input[type=number]').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const m = e.target.dataset.meal;
+      const i = +e.target.dataset.idx;
+      state.customSelections[m][i].grams = +e.target.value || 0;
+      renderSuggestions();
+      renderCustomPreviewIng();
+    });
+  });
+  wrap.querySelectorAll('.selected-item-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const m = btn.dataset.meal;
+      const i = +btn.dataset.idx;
+      state.customSelections[m].splice(i, 1);
+      renderPool();
+      renderSelected();
+      renderSuggestions();
+      renderCustomPreviewIng();
+    });
+  });
+}
+
+// 基于已选食材推荐合适的菜品
+function renderSuggestions() {
+  const list = $('suggestionList');
+  const meal = state.selectedMeal;
+  const items = state.customSelections[meal];
+  if (!items.length) {
+    list.innerHTML = `<div class="suggestion-empty">先选择一些食材,这里会基于你的搭配推荐当前菜系下的合适菜品组合 →</div>`;
+    return;
+  }
+  const methods = getCuisineMethods();
+  const carbs = items.filter(s => s.ing.cat === 'carb' && !s.ing.isFruit);
+  const proteins = items.filter(s => s.ing.cat === 'protein' && s.ing.p > 5);
+  const vegs = items.filter(s => s.ing.cat === 'veg');
+  const fruits = items.filter(s => s.ing.isFruit);
+
+  const suggestions = [];
+
+  // 蛋白菜建议
+  proteins.forEach(s => {
+    const validMethods = methods.filter(m => {
+      const ok = ['清蒸','白灼','水煮','清炖','清汤','滚汤','上汤','凉拌','酱','卤水','盐水煮','白切','白煮','宫保','鱼香','麻婆','麻辣','干煸','剁椒蒸','小炒','锅烹','咸鲜','蒜蓉蒸','西湖醋','酸辣','焖煮','糟溜','爆炒','酸辣汤','烫'];
+      return ok.includes(m);
+    });
+    validMethods.slice(0, 2).forEach(method => {
+      const tmpl = cookingMethods[method];
+      suggestions.push({
+        name: tmpl.name.replace('{ing}', s.ing.name),
+        methodKey: method,
+        method: tmpl.tag,
+        items: [s]
+      });
+    });
+  });
+
+  // 蔬菜菜建议
+  vegs.forEach(s => {
+    const validMethods = methods.filter(m => {
+      const ok = ['清炒','白灼','凉拌','清蒸','上汤','水煮','蒜蓉蒸','酸辣','糟溜','清汤','咸鲜','酸菜煮','烫'];
+      return ok.includes(m);
+    });
+    validMethods.slice(0, 2).forEach(method => {
+      const tmpl = cookingMethods[method];
+      suggestions.push({
+        name: tmpl.name.replace('{ing}', s.ing.name),
+        methodKey: method,
+        method: tmpl.tag,
+        items: [s]
+      });
+    });
+  });
+
+  // 主食 + 奶 组合(早餐)
+  if (meal === 'breakfast') {
+    carbs.forEach(c => {
+      const dairy = proteins.find(p => ['纯牛奶','脱脂牛奶','无糖豆浆','无糖希腊酸奶'].includes(p.ing.name));
+      if (dairy && (c.ing.name === '燕麦' || c.ing.name.includes('麦'))) {
+        suggestions.push({
+          name: `${c.ing.name}配${dairy.ing.name}`,
+          methodKey: '__breakfast_bowl__',
+          method: '清淡早餐',
+          items: [c, dairy]
+        });
+      }
+    });
+  }
+
+  // 主食单独
+  carbs.forEach(c => {
+    suggestions.push({
+      name: c.ing.name,
+      methodKey: '__staple__',
+      method: '主食',
+      mainIng: c.ing.name,
+      items: [c]
+    });
+  });
+
+  // 水果
+  fruits.forEach(f => {
+    suggestions.push({
+      name: `时令水果·${f.ing.name}`,
+      methodKey: '__raw_fruit__',
+      method: '生食·原味',
+      items: [f]
+    });
+  });
+
+  // 取前 8 个并去重
+  const seen = new Set();
+  const uniq = suggestions.filter(s => {
+    if (seen.has(s.name)) return false;
+    seen.add(s.name);
+    return true;
+  }).slice(0, 9);
+
+  list.innerHTML = `<div class="suggestion-list">${uniq.map((s, i) => `
+    <div class="suggestion-card" data-sidx="${i}">
+      <div class="suggestion-card-name">${s.name}</div>
+      <div class="suggestion-card-method">${s.method}</div>
+    </div>
+  `).join('')}</div>`;
+  list.querySelectorAll('.suggestion-card').forEach(card => {
+    card.addEventListener('click', () => {
+      openCookModal(uniq[+card.dataset.sidx]);
+    });
+  });
+}
+
+function renderCustomPreviewIng() {
+  const wrap = $('customPreviewIng');
+  // 统计三餐总营养
+  const meals = ['breakfast','lunch','dinner'].map(m => {
+    const items = state.customSelections[m].map(s => calcItem(s.ing, s.grams));
+    const total = items.reduce((a,x)=>({kcal:a.kcal+x.kcal,c:a.c+x.c,p:a.p+x.p,f:a.f+x.f}),{kcal:0,c:0,p:0,f:0});
+    return { name: m, total, allItems: items };
+  });
+  state.currentMenu = meals.map((m,i) => ({ ...m, dishes:[], en:['Breakfast','Luncheon','Supper'][i], tag:'CUSTOM' }));
+  const tot = meals.reduce((a,m)=>({kcal:a.kcal+m.total.kcal,c:a.c+m.total.c,p:a.p+m.total.p,f:a.f+m.total.f}),{kcal:0,c:0,p:0,f:0});
+  if (tot.kcal === 0) {
+    wrap.innerHTML = '';
+    return;
+  }
+  const target = calcTargets();
+  function pctText(actual, tgt) {
+    const pct = actual/tgt*100;
+    const diff = pct - 100;
+    if (Math.abs(diff) <= 8) return { text: `达标 · ${pct.toFixed(0)}%`, cls: 'good' };
+    if (diff > 8) return { text: `超出 +${diff.toFixed(0)}%`, cls: 'over' };
+    return { text: `不足 ${diff.toFixed(0)}%`, cls: 'warn' };
+  }
+  const calP = pctText(tot.kcal, target.intake);
+  const cP = pctText(tot.c, target.cG);
+  const pP = pctText(tot.p, target.pG);
+  const fP = pctText(tot.f, target.fG);
+  wrap.innerHTML = `
+    <div class="total-bar">
+      <div class="total-title">
+        <div class="total-title-en"><em>Custom Sum</em></div>
+        <div class="total-title-zh">自定义合计</div>
+      </div>
+      <div class="total-cell"><div class="total-cell-label">总热量</div><div class="total-cell-val">${Math.round(tot.kcal)}</div><div class="total-cell-pct ${calP.cls}">${calP.text}</div></div>
+      <div class="total-cell"><div class="total-cell-label">⬤ 碳水</div><div class="total-cell-val carb">${Math.round(tot.c)}g</div><div class="total-cell-pct ${cP.cls}">${cP.text}</div></div>
+      <div class="total-cell"><div class="total-cell-label">⬤ 蛋白</div><div class="total-cell-val protein">${Math.round(tot.p)}g</div><div class="total-cell-pct ${pP.cls}">${pP.text}</div></div>
+      <div class="total-cell"><div class="total-cell-label">⬤ 脂肪</div><div class="total-cell-val fat">${Math.round(tot.f)}g</div><div class="total-cell-pct ${fP.cls}">${fP.text}</div></div>
+    </div>
+  `;
+  renderGuideCheck();
+}
+
+// ====================================================================
+// 模式 C: 按预设菜品库自定义
+// ====================================================================
+// 生成预设菜品库:遍历所有食材 × 适合的做法
+function buildPresetDishes() {
+  const dishes = [];
+  const allIngs = ingredients;
+  const methods = getCuisineMethods();
+
+  // 蛋白菜
+  const proteins = allIngs.filter(i => i.cat==='protein' && i.p > 5 && !['纯牛奶','脱脂牛奶','无糖豆浆','无糖希腊酸奶','低脂奶酪','蛋白'].includes(i.name));
+  const proMethods = methods.filter(m => {
+    const ok = ['清蒸','白灼','水煮','清炖','凉拌','酱','卤水','盐水煮','白切','白煮','宫保','鱼香','麻婆','麻辣','干煸','剁椒蒸','小炒','锅烹','咸鲜','蒜蓉蒸','西湖醋','酸辣','焖煮','糟溜','爆炒'];
+    return ok.includes(m);
+  });
+  proteins.forEach(p => {
+    proMethods.forEach(m => {
+      const tmpl = cookingMethods[m];
+      let g = 110;
+      if (p.name.includes('豆腐')) g = 150;
+      if (p.name === '豆干') g = 80;
+      if (p.name === '鸡蛋') g = 100;
+      dishes.push({
+        type: 'protein',
+        name: tmpl.name.replace('{ing}', p.name),
+        methodKey: m,
+        method: tmpl.tag,
+        mainIng: p.name,
+        items: [{ ing: p, grams: g }],
+        regions: p.regions
+      });
+    });
+  });
+
+  // 蔬菜菜
+  const vegs = allIngs.filter(i => i.cat==='veg');
+  const vegMethods = methods.filter(m => {
+    const ok = ['清炒','白灼','凉拌','清蒸','上汤','水煮','蒜蓉蒸','酸辣','糟溜','咸鲜','酸菜煮','烫'];
+    return ok.includes(m);
+  });
+  vegs.forEach(v => {
+    vegMethods.forEach(m => {
+      const tmpl = cookingMethods[m];
+      dishes.push({
+        type: 'veg',
+        name: tmpl.name.replace('{ing}', v.name),
+        methodKey: m,
+        method: tmpl.tag,
+        mainIng: v.name,
+        items: [{ ing: v, grams: 200 }],
+        regions: v.regions
+      });
+    });
+  });
+
+  // 主食
+  allIngs.filter(i => i.cat==='carb' && !i.isFruit).forEach(c => {
+    const g = (c.name.includes('红薯')||c.name.includes('紫薯')||c.name.includes('土豆')||c.name.includes('山药')) ? 130
+            : c.name==='玉米' ? 200
+            : c.name === '燕麦' ? 50
+            : c.name==='全麦面包' ? 70
+            : (c.name.includes('面')||c.name==='粿条'||c.name==='河粉') ? 150
+            : 130;
+    dishes.push({
+      type: 'staple',
+      name: c.name,
+      methodKey: '__staple__',
+      method: '主食',
+      mainIng: c.name,
+      items: [{ ing: c, grams: g }],
+      regions: c.regions
+    });
+  });
+
+  // 汤品
+  proteins.filter(p => p.cat==='protein' && p.p > 10).forEach(p => {
+    if (methods.includes('清汤') || methods.includes('滚汤') || methods.includes('清炖')) {
+      const m = methods.includes('清炖') ? '清炖' : (methods.includes('清汤') ? '清汤' : '滚汤');
+      const tmpl = cookingMethods[m];
+      dishes.push({
+        type: 'soup',
+        name: tmpl.name.replace('{ing}', p.name),
+        methodKey: m,
+        method: tmpl.tag,
+        mainIng: p.name,
+        items: [{ ing: p, grams: 110 }],
+        regions: p.regions
+      });
+    }
+  });
+
+  return dishes;
+}
+
+function renderPresetDishes() {
+  const grid = $('presetGrid');
+  let dishes = buildPresetDishes();
+  // 过滤
+  if (state.presetFilter === 'staple') dishes = dishes.filter(d => d.type === 'staple');
+  else if (state.presetFilter === 'protein') dishes = dishes.filter(d => d.type === 'protein');
+  else if (state.presetFilter === 'veg') dishes = dishes.filter(d => d.type === 'veg');
+  else if (state.presetFilter === 'soup') dishes = dishes.filter(d => d.type === 'soup');
+  else if (state.presetFilter === 'local') dishes = dishes.filter(d => d.regions && d.regions.includes(state.cuisine));
+
+  // 当地置顶
+  dishes.sort((a, b) => {
+    const aF = a.regions && a.regions.includes(state.cuisine);
+    const bF = b.regions && b.regions.includes(state.cuisine);
+    if (aF && !bF) return -1;
+    if (!aF && bF) return 1;
+    return 0;
+  });
+
+  // 已选标记
+  const allSelected = new Set();
+  ['breakfast','lunch','dinner'].forEach(m => {
+    state.customDishes[m].forEach(d => allSelected.add(`${m}::${d.name}`));
+  });
+
+  $('cntDishAll').textContent = dishes.length;
+
+  grid.innerHTML = dishes.slice(0, 60).map((d, i) => {
+    const total = d.items.reduce((a, x) => {
+      const it = calcItem(x.ing, x.grams);
+      return { kcal: a.kcal+it.kcal, c: a.c+it.c, p: a.p+it.p, f: a.f+it.f };
+    }, { kcal:0, c:0, p:0, f:0 });
+    return `
+      <div class="preset-card" data-pidx="${i}">
+        <div class="preset-card-name">${d.name}</div>
+        <div class="preset-card-method">${d.method}${d.regions && d.regions.includes(state.cuisine) ? ' · ★ 当地' : ''}</div>
+        <div class="preset-card-stats">
+          <span><span class="lbl">cal</span> <span style="color:var(--accent);font-weight:600;">${Math.round(total.kcal)}</span></span>
+          <span><span class="lbl">P</span> <span style="color:var(--protein);font-weight:600;">${total.p.toFixed(0)}g</span></span>
+          <span><span class="lbl">C</span> <span style="color:var(--carb);font-weight:600;">${total.c.toFixed(0)}g</span></span>
+          <span><span class="lbl">F</span> <span style="color:var(--fat);font-weight:600;">${total.f.toFixed(0)}g</span></span>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // store dishes for click handler
+  grid._dishes = dishes.slice(0, 60);
+
+  grid.querySelectorAll('.preset-card').forEach(card => {
+    card.addEventListener('click', e => {
+      const idx = +card.dataset.pidx;
+      const dish = grid._dishes[idx];
+      // 添加到当前选中的餐
+      const meal = state.selectedMeal2 || 'breakfast';
+      const exist = state.customDishes[meal].find(d => d.name === dish.name);
+      if (exist) {
+        // 移除
+        state.customDishes[meal] = state.customDishes[meal].filter(d => d.name !== dish.name);
+      } else {
+        state.customDishes[meal].push(dish);
+      }
+      renderPresetDishes();
+      renderCustomPreviewDish();
+    });
+    // 检查是否已选
+    const idx = +card.dataset.pidx;
+    const d = grid._dishes[idx];
+    const meal = state.selectedMeal2 || 'breakfast';
+    if (state.customDishes[meal].some(x => x.name === d.name)) {
+      card.classList.add('added');
+    }
+  });
+}
+
+function renderCustomPreviewDish() {
+  const wrap = $('customPreviewDish');
+  const meals = ['breakfast','lunch','dinner'].map(m => {
+    const dishes = state.customDishes[m];
+    const allItems = [];
+    dishes.forEach(d => {
+      d.items.forEach(it => {
+        allItems.push(calcItem(it.ing, it.grams));
+      });
+    });
+    const total = allItems.reduce((a,x)=>({kcal:a.kcal+x.kcal,c:a.c+x.c,p:a.p+x.p,f:a.f+x.f}),{kcal:0,c:0,p:0,f:0});
+    return { name: m, dishes, total, allItems, en:{breakfast:'Breakfast',lunch:'Luncheon',dinner:'Supper'}[m], tag: 'CUSTOM' };
+  });
+  state.currentMenu = meals;
+  const tot = meals.reduce((a,m)=>({kcal:a.kcal+m.total.kcal,c:a.c+m.total.c,p:a.p+m.total.p,f:a.f+m.total.f}),{kcal:0,c:0,p:0,f:0});
+  if (tot.kcal === 0) { wrap.innerHTML = '<div style="margin-top:24px;padding:20px;background:var(--paper-deep);font-family:\'Cormorant Garamond\',serif;font-style:italic;color:var(--ink-mute);text-align:center;">从上方菜品库点选添加到当前餐次,这里会显示你的菜单实时合计</div>'; return; }
+
+  const target = calcTargets();
+  function pctText(a, t) {
+    const pct = a/t*100; const diff = pct-100;
+    if (Math.abs(diff)<=8) return {text:`达标 · ${pct.toFixed(0)}%`,cls:'good'};
+    if (diff>8) return {text:`超出 +${diff.toFixed(0)}%`,cls:'over'};
+    return {text:`不足 ${diff.toFixed(0)}%`,cls:'warn'};
+  }
+  const calP = pctText(tot.kcal, target.intake);
+  const cP = pctText(tot.c, target.cG);
+  const pP = pctText(tot.p, target.pG);
+  const fP = pctText(tot.f, target.fG);
+
+  // 显示已选菜品
+  let dishesHtml = `<div style="margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">`;
+  meals.forEach(m => {
+    dishesHtml += `<article class="meal-card">
+      <header class="meal-header">
+        <span class="meal-tag">${m.tag}</span>
+        <div class="meal-name">${m.en}</div>
+        <div class="meal-name-zh">${{breakfast:'早餐',lunch:'午餐',dinner:'晚餐'}[m.name]}</div>
+      </header>
+      <div class="meal-body">`;
+    if (!m.dishes.length) {
+      dishesHtml += `<div style="padding:20px 0;text-align:center;color:var(--ink-mute);font-family:'Cormorant Garamond',serif;font-style:italic;">— 未选 —</div>`;
+    } else {
+      m.dishes.forEach((d, di) => {
+        dishesHtml += `<div class="dish-block">
+          <div class="dish-name">
+            <span class="dish-name-text" data-dm="${m.name}" data-dd="${di}">${d.name}</span>
+            <span class="dish-method-tag">${d.method}</span>
+          </div>
+          <div class="dish-items">${d.items.map(it => `
+            <div class="dish-item-line">
+              <span class="dish-item-name"><span class="dish-dot ${it.ing.isFruit?'carb':it.ing.cat}"></span>${it.ing.name}</span>
+              <span class="dish-qty">${it.grams}g</span>
+            </div>
+          `).join('')}</div>
+        </div>`;
+      });
+    }
+    dishesHtml += `</div>
+      <footer class="meal-footer">
+        <div class="meal-foot-cell"><span class="meal-foot-label">KCAL</span><span class="meal-foot-val">${Math.round(m.total.kcal)}</span></div>
+        <div class="meal-foot-cell"><span class="meal-foot-label">C</span><span class="meal-foot-val">${Math.round(m.total.c)}g</span></div>
+        <div class="meal-foot-cell"><span class="meal-foot-label">P</span><span class="meal-foot-val">${Math.round(m.total.p)}g</span></div>
+        <div class="meal-foot-cell"><span class="meal-foot-label">F</span><span class="meal-foot-val">${Math.round(m.total.f)}g</span></div>
+      </footer>
+    </article>`;
+  });
+  dishesHtml += `</div>`;
+
+  wrap.innerHTML = dishesHtml + `
+    <div class="total-bar" style="margin-top:24px;">
+      <div class="total-title">
+        <div class="total-title-en"><em>Custom Sum</em></div>
+        <div class="total-title-zh">自定义合计</div>
+      </div>
+      <div class="total-cell"><div class="total-cell-label">总热量</div><div class="total-cell-val">${Math.round(tot.kcal)}</div><div class="total-cell-pct ${calP.cls}">${calP.text}</div></div>
+      <div class="total-cell"><div class="total-cell-label">⬤ 碳水</div><div class="total-cell-val carb">${Math.round(tot.c)}g</div><div class="total-cell-pct ${cP.cls}">${cP.text}</div></div>
+      <div class="total-cell"><div class="total-cell-label">⬤ 蛋白</div><div class="total-cell-val protein">${Math.round(tot.p)}g</div><div class="total-cell-pct ${pP.cls}">${pP.text}</div></div>
+      <div class="total-cell"><div class="total-cell-label">⬤ 脂肪</div><div class="total-cell-val fat">${Math.round(tot.f)}g</div><div class="total-cell-pct ${fP.cls}">${fP.text}</div></div>
+    </div>
+  `;
+  // 绑定菜名点击
+  wrap.querySelectorAll('.dish-name-text').forEach(el => {
+    el.addEventListener('click', () => {
+      const meal = meals.find(m => m.name === el.dataset.dm);
+      const dish = meal.dishes[+el.dataset.dd];
+      openCookModal(dish);
+    });
+  });
+  renderGuideCheck();
+}
+
+// ====================================================================
+// Tab 切换
+// ====================================================================
+function applyTab(tab) {
+  state.activeTab = tab;
+  document.querySelectorAll('.mode-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab===tab));
+  document.querySelectorAll('.builder-section').forEach(s => s.classList.toggle('active', s.dataset.section===tab));
+  // 切到不同 tab 时重新算指南(基于当前菜单)
+  if (tab === 'auto') {
+    const meals = generateMenu();
+    renderMenu(meals);
+  } else if (tab === 'custom-ing') {
+    renderPool();
+    renderSelected();
+    renderSuggestions();
+    renderCustomPreviewIng();
+  } else if (tab === 'custom-dish') {
+    renderPresetDishes();
+    renderCustomPreviewDish();
+  }
+}
+
+// ====================================================================
+// 事件绑定
+// ====================================================================
+function bindEvents() {
+  document.querySelectorAll('.mode-btn').forEach(b => b.addEventListener('click', () => applyMode(b.dataset.mode)));
+  $('tdeeInput').addEventListener('input', e => { state.tdee = Number(e.target.value)||0; renderTargets(); refreshActiveView(); });
+  $('deficitSlider').addEventListener('input', e => {
+    state.deficit = Number(e.target.value);
+    $('deficitValue').textContent = `−${state.deficit}%`;
+    renderTargets();
+    refreshActiveView();
+  });
+  ['carbRatio','proteinRatio','fatRatio'].forEach((id, i) => {
+    $(id).addEventListener('input', e => {
+      const k = ['c','p','f'][i];
+      state.ratio[k] = Number(e.target.value);
+      renderRatio();
+      renderTargets();
+      refreshActiveView();
+    });
+  });
+  $('ingSearch').addEventListener('input', e => { state.search = e.target.value; renderIngredients(); });
+  document.querySelectorAll('.filter-pill[data-filter]').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill[data-filter]').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      state.filter = p.dataset.filter;
+      renderIngredients();
+    });
+  });
+
+  // Tab
+  document.querySelectorAll('.mode-tab-btn').forEach(b => b.addEventListener('click', () => applyTab(b.dataset.tab)));
+
+  // 日期 + 刷新
+  $('dateInput').value = state.menuDate;
+  $('dateInput').addEventListener('change', e => {
+    state.menuDate = e.target.value;
+    state.refreshSeed = 0;
+    const meals = generateMenu();
+    renderMenu(meals);
+  });
+  $('todayBtn').addEventListener('click', () => {
+    state.menuDate = new Date().toISOString().slice(0,10);
+    state.refreshSeed = 0;
+    $('dateInput').value = state.menuDate;
+    const meals = generateMenu();
+    renderMenu(meals);
+  });
+  $('refreshBtn').addEventListener('click', () => {
+    state.refreshSeed++;
+    const meals = generateMenu();
+    renderMenu(meals);
+  });
+
+  // 模式 B: 食材池
+  $('poolSearch').addEventListener('input', e => { state.poolSearch = e.target.value; renderPool(); });
+  document.querySelectorAll('.ing-pool-cat').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.ing-pool-cat').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      state.poolFilter = b.dataset.pcat;
+      renderPool();
+    });
+  });
+  document.querySelectorAll('.meal-pick-btn[data-meal]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.meal-pick-btn[data-meal]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      state.selectedMeal = b.dataset.meal;
+      renderPool();
+      renderSelected();
+      renderSuggestions();
+    });
+  });
+
+  // 模式 C: 预设菜品
+  state.selectedMeal2 = 'breakfast';
+  document.querySelectorAll('.meal-pick-btn[data-meal2]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.meal-pick-btn[data-meal2]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      state.selectedMeal2 = b.dataset.meal2;
+      renderPresetDishes();
+    });
+  });
+  document.querySelectorAll('.filter-pill[data-pf]').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill[data-pf]').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      state.presetFilter = b.dataset.pf;
+      renderPresetDishes();
+    });
+  });
+
+  // 指南切换
+  document.querySelectorAll('.guide-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      state.guide = b.dataset.guide;
+      renderGuideToggle();
+      renderIngredients();
+      renderGuideCheck();
+    });
+  });
+
+  // Modal
+  $('modalClose').addEventListener('click', closeCookModal);
+  $('cookModal').addEventListener('click', e => {
+    if (e.target === $('cookModal')) closeCookModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && $('cookModal').classList.contains('show')) closeCookModal();
+  });
+}
+
+// 切换菜系等条件后,刷新当前激活的视图
+function refreshActiveView() {
+  if (state.activeTab === 'auto') {
+    const meals = generateMenu();
+    renderMenu(meals);
+  } else if (state.activeTab === 'custom-ing') {
+    renderCustomPreviewIng();
+  } else if (state.activeTab === 'custom-dish') {
+    renderPresetDishes();
+    renderCustomPreviewDish();
+  }
+}
+
+// ====================================================================
+// Init
+// ====================================================================
+function init() {
+  $('todayDate').textContent = todayStr();
+  applyMode('train');
+  renderCuisineGrid();
+  renderCuisineDetails();
+  renderSubRegions();
+  renderIngredients();
+  renderGuideToggle();
+  const meals = generateMenu();
+  renderMenu(meals);
+  bindEvents();
+}
+init();
+</script>
+
+</body>
+</html>
