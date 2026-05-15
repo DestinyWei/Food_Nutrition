@@ -1973,6 +1973,34 @@ body {
   .convert-grams, .convert-result { font-size: 36px; width: 90px; min-width: 90px; }
 }
 
+/* === 访问量计数器(masthead 内联,低调显示) === */
+.masthead-visits {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+  letter-spacing: 0.08em;
+}
+.mv-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.mv-label {
+  opacity: 0.6;
+  font-size: 9px;
+}
+.mv-sep {
+  opacity: 0.3;
+  font-size: 9px;
+}
+.masthead-visits .loading {
+  opacity: 0.4;
+}
+
 /* === 导出按钮(menu section 顶部) === */
 .export-btn {
   display: flex;
@@ -2508,6 +2536,11 @@ body { padding-left: 0; }
     <div class="masthead-meta">
       营养实验室 · NUTRITIONAL LAB<br>
       <span id="todayDate"></span>
+      <span class="masthead-visits" id="visitCounter" title="访问统计">
+        <span class="mv-item"><span class="mv-label">总</span> <span id="visitTotal">···</span></span>
+        <span class="mv-sep">·</span>
+        <span class="mv-item"><span class="mv-label">今日</span> <span id="visitToday">···</span></span>
+      </span>
     </div>
   </div>
 </header>
@@ -6287,6 +6320,117 @@ function bindExport() {
     if (e.key === 'Escape' && $('exportModal').classList.contains('show')) closeExportModal();
   });
 }
+
+// ====================================================================
+// 访问量统计
+// 主端点:abacus.jasoncameron.dev(CountAPI 后继者,免费 CORS 开放)
+// 备选:api.counterapi.dev v1/v2
+// fallback:全部失败时 localStorage 单设备计数
+// 会话内只计 +1 一次(sessionStorage 去重)
+// ====================================================================
+const COUNTER_NS = 'china-cut-kitchen-cck';  // 命名空间(用域名风格 key)
+const SESSION_KEY = 'cck_counted';
+
+function fmtNumber(n) {
+  if (n == null || isNaN(n)) return '—';
+  return n.toLocaleString('en-US');
+}
+
+// 抓取/递增计数:依次尝试 abacus → counterapi v1 → counterapi v2
+async function hitCounter(key, increment) {
+  const action = increment ? 'hit' : 'get';
+  // Abacus: GET /hit/{namespace}/{key} 或 /get/{namespace}/{key} → {value: N}
+  const endpoints = [
+    `https://abacus.jasoncameron.dev/${action}/${COUNTER_NS}/${encodeURIComponent(key)}`,
+    `https://api.counterapi.dev/v1/${COUNTER_NS}/${encodeURIComponent(key)}${increment ? '/up' : ''}`,
+    `https://api.counterapi.dev/v2/${COUNTER_NS}/${encodeURIComponent(key)}${increment ? '/up' : ''}`
+  ];
+  for (const url of endpoints) {
+    try {
+      const res = await fetch(url, { method: 'GET', mode: 'cors' });
+      if (!res.ok) continue;
+      const data = await res.json();
+      // 兼容: {value: N} (abacus, counterapi v1) / {data: {up_count: N}} (counterapi v2)
+      if (typeof data === 'number') return data;
+      if (typeof data.value === 'number') return data.value;
+      if (data.data && typeof data.data.up_count === 'number') return data.data.up_count;
+      if (data.data && typeof data.data.value === 'number') return data.data.value;
+    } catch (e) {
+      // 试下一个
+    }
+  }
+  return null;
+}
+
+// localStorage fallback(单设备版,只在所有公共服务都失败时启用)
+function localFallback() {
+  const todayKey = new Date().toISOString().slice(0, 10);
+  try {
+    let total = parseInt(localStorage.getItem('cck_visit_total') || '0', 10);
+    const lastDate = localStorage.getItem('cck_visit_lastdate');
+    let today = parseInt(localStorage.getItem('cck_visit_today') || '0', 10);
+    if (lastDate !== todayKey) {
+      today = 0;
+      localStorage.setItem('cck_visit_lastdate', todayKey);
+    }
+    total++;
+    today++;
+    localStorage.setItem('cck_visit_total', String(total));
+    localStorage.setItem('cck_visit_today', String(today));
+    return { total, today };
+  } catch (e) {
+    return { total: null, today: null };
+  }
+}
+
+async function initVisitCounter() {
+  const totalEl = $('visitTotal');
+  const todayEl = $('visitToday');
+  if (!totalEl || !todayEl) return;
+  totalEl.classList.add('loading');
+  todayEl.classList.add('loading');
+
+  // 会话去重:刷新页面不重复 +1
+  const counted = sessionStorage.getItem(SESSION_KEY) === '1';
+
+  const todayKey = `visits-${new Date().toISOString().slice(0, 10)}`;
+
+  let totalVal = null, todayVal = null;
+
+  if (counted) {
+    // 已计过,只读取当前值
+    [totalVal, todayVal] = await Promise.all([
+      hitCounter('visits-total', false),
+      hitCounter(todayKey, false)
+    ]);
+  } else {
+    // 首次会话,+1
+    [totalVal, todayVal] = await Promise.all([
+      hitCounter('visits-total', true),
+      hitCounter(todayKey, true)
+    ]);
+    if (totalVal !== null || todayVal !== null) {
+      sessionStorage.setItem(SESSION_KEY, '1');
+    }
+  }
+
+  const counter = $('visitCounter');
+
+  // 全部失败 → 本地 fallback
+  if (totalVal === null && todayVal === null) {
+    const lf = localFallback();
+    totalVal = lf.total;
+    todayVal = lf.today;
+    if (counter) counter.title = '当前为单设备本地计数(在线服务暂不可达)';
+  } else {
+    if (counter) counter.title = '统计来自公共计数服务(abacus.jasoncameron.dev)';
+  }
+
+  totalEl.classList.remove('loading');
+  todayEl.classList.remove('loading');
+  totalEl.textContent = fmtNumber(totalVal);
+  todayEl.textContent = fmtNumber(todayVal);
+}
 function bindSidebar() {
   const sidebar = $('sidebar');
   const backdrop = $('sidebarBackdrop');
@@ -6385,6 +6529,8 @@ function init() {
   bindConverter();
   bindSidebar();
   bindExport();
+  // 异步统计访问量(不阻塞主流程)
+  initVisitCounter();
 }
 init();
 </script>
